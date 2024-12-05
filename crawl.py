@@ -14,9 +14,10 @@ driver = webdriver.Edge(options=options)
 
 try:
     topic = "shell"
+    # topic = "dockerfile"
     pages = 100
     pagesize = 50
-    for page in range(1, pages+1):
+    for page in range(30, pages+1):
         for index in range(1, pagesize+1):
             driver.get(f"https://stackoverflow.com/questions/tagged/{topic}?page={page}&sort=votes&pagesize={pagesize}")
             time.sleep(1)
@@ -34,13 +35,13 @@ try:
                 answer = driver.find_element(By.XPATH, "/html/body/div[8]/div[3]/div/div[1]/div[3]/div[3]/div[2]/div/div[2]/div[1]").text
             print(f"Question Answer: {answer}")
 
-            with open("result.json", "r", encoding="utf-8") as result:
+            with open(f"{topic}.json", "r", encoding="utf-8") as result:
                 try:
                     data = json.load(result)
                 except json.JSONDecodeError:
                     data = {}
                 data.update({question_title: answer})
-            with open("result.json", "w", encoding="utf-8") as result:
+            with open(f"{topic}.json", "w", encoding="utf-8") as result:
                 json.dump(data, result, indent=4)
             print("index: ", index)
         print("page: ", page)

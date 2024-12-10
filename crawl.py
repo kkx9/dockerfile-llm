@@ -14,8 +14,8 @@ options.add_experimental_option("debuggerAddress", "127.0.0.1:9222")
 driver = webdriver.Edge(options=options)
 
 try:
-    topic = "shell"
-    # topic = "dockerfile"
+    # topic = "shell"
+    topic = "dockerfile"
     pages = 100
     pagesize = 50
     position = 8
@@ -48,8 +48,8 @@ try:
                 continue
             print(f"Question Answer: {answer}")
 
-            if not os.path.exists("dockerfile.json"):
-                open("dockerfile.json", "w").close()
+            if not os.path.exists(f"{topic}.json"):
+                open(f"{topic}.json", "w").close()
             with open(f"{topic}.json", "r", encoding="utf-8") as result:
                 try:
                     data = json.load(result)

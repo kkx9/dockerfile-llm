@@ -15,5 +15,5 @@
 当用户提出需求时，基于知识图谱检索相关上下文，一并作为LLM输入，LLM输出答案，然后调用docker build构建镜像，并测试能否通过用户所给的命令
 ## Dockerfile自动修复以及优化
 1. 若生成的Dockerfile构建失败或者运行命令失败，则收集其日志，用分词技术提取其中的关键字，并查询stackoverflow等相关博客网站，获取最相关的前五个URL，作为上下文一并输入给LLM自动修复
-2. 对于正确的dockerfile，基于FBE（选取GitHub上大型项目，基于同一项目的不同版本Dockerfile，挖掘其中的重构规则），优化dockerfile结构，使其构建效率更高（具体细节带实现）
-3. 最后，将正确的dockerfile加入数据库，重新生成FBE知识
+2. 对于正确的dockerfile，基于PBE（选取GitHub上大型项目，基于同一项目的不同版本Dockerfile，挖掘其中的重构规则），优化dockerfile结构，使其构建效率更高（具体细节带实现）
+3. 最后，将正确的dockerfile加入数据库，重新生成PBE知识

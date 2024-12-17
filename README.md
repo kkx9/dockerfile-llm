@@ -5,10 +5,9 @@
 ### Dockerfile
 1. 从Github爬取官方Dockerfile以及star数量超过1k的仓库的Dockerfile
 2. 使用现有的Dockerfile语法检测工具 [Hadolint](https://github.com/hadolint/hadolint) 对Dockerfile进行过滤
-3. 将Dockerfile解析成抽象语法树（AST），通过聚类算法，将Dockerfile按照相似度分类（具体算法细节待实现）
+3. 将Dockerfile解析成抽象语法树（AST），通过DBSCAN聚类算法，将Dockerfile按照相似度分类
 4. 对于同一类型的Dockerfile，基于AST做规则挖掘，挖掘其中的普适性规则（如shell命令之间的用法习惯和组合，以及软件安装的依赖等等）
-5. 基于同一项目的不同版本Dockerfile，挖掘其中的重构规则
-6. 基于挖掘到的规则，并结合官方推荐的best practice，生成Dockerfile领域知识图谱，用于In-Context Learning时上下文检索
+5. 基于挖掘到的规则，并结合官方推荐的best practice，生成Dockerfile领域知识图谱（具体算法细节带实现），用于In-Context Learning时上下文检索
 ### 问答对
 1. 从stackoverflow爬取Dockerfile以及shell相关的问题-答案
 2. 基于爬取到的答案，生成知识图谱（具体算法细节带实现）
@@ -16,5 +15,5 @@
 当用户提出需求时，基于知识图谱检索相关上下文，一并作为LLM输入，LLM输出答案，然后调用docker build构建镜像，并测试能否通过用户所给的命令
 ## Dockerfile自动修复以及优化
 1. 若生成的Dockerfile构建失败或者运行命令失败，则收集其日志，用分词技术提取其中的关键字，并查询stackoverflow等相关博客网站，获取最相关的前五个URL，作为上下文一并输入给LLM自动修复
-2. 对于正确的dockerfile，基于知识图谱，优化dockerfile结构，使其构建效率更高（具体细节带实现）
-3. 最后，将正确的dockerfile加入数据库，重新生成知识图谱
+2. 对于正确的dockerfile，基于FBE（选取GitHub上大型项目，基于同一项目的不同版本Dockerfile，挖掘其中的重构规则），优化dockerfile结构，使其构建效率更高（具体细节带实现）
+3. 最后，将正确的dockerfile加入数据库，重新生成FBE知识

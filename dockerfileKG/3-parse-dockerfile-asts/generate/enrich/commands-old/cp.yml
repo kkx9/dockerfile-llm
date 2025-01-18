@@ -1,0 +1,75 @@
+command:
+  providerFor:
+    - cp
+  prefix: SC-CP
+  options: &options
+    booleans:
+      - option: -r, --recursive
+        description: Copy directories recursively
+      - option: -R, --recursive
+        description: Copy directories recursively
+      - option: -a, --archive
+        description: Archive mode
+      - option: -f, --force
+        description: Force overwrite of existing files
+      - option: -l, --link
+        description: Hard link files instead of copying
+      - option: -L, --dereference
+        description: Always follow symbolic links in source
+      - option: -n, --no-clobber
+        description: Do not overwrite an existing file
+      - option: -d
+        description: Same as --no-dereference --preserve=links
+      - option: -i, --interactive
+        description: Prompt before overwrite
+      - option: -p
+        description: Preserve file attributes if possible
+      - option: --parents
+        description: Use full source file name under destination directory
+      - option: -s, --symbolic-link
+        description: Make symbolic links instead of copying
+      - option: --remove-destination
+        description: Remove each existing destination file before attempting to open it
+      - option: -T, --no-target-directory
+        description: Treat destination as a normal file
+      - option: -u, --update
+        description: Copy only when the source file is newer than the destination file or when the destination file is missing
+      - option: -v, --verbose
+        description: Explain what is being done
+      - option: -x, --one-file-system
+        description: Stay on this file system
+      - option: -Z
+        description: Set SELinux security context of destination file to default type
+      - option: --help
+        description: Display this help and exit
+      - option: --version
+        description: Output version information and exit
+      - option: -H
+        description: Follow command-line symbolic links in source
+      - option: --copy-contents
+        description: Copy contents of special files when recursive
+      - option: -b
+        description: Make a backup of each existing destination file
+      - option: --attributes-only
+        description: Don't copy the file data, just the attributes
+      - option: --strip-trailing-slashes
+        description: Remove any trailing slashes from each source argument
+    strings:
+      - option: --preserve
+        description: Preserve the specified attributes
+      - option: --no-preserve
+        description: Do not preserve the specified attributes
+      - option: --context
+        description: Set the SELinux security context of destination file to context
+      - option: --backup
+        description: Make a backup of each existing destination file
+      - option: --sparse
+        description: Control creation of sparse files
+  scenarios:
+    - cmd: $0 [paths...]
+      options: *options
+      name: SC-CP
+      postProcess:
+        - tagLastElement:
+            source: paths
+            tag: SC-CP-DESTINATION

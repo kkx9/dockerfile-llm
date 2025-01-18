@@ -1,1 +1,4 @@
 .idea/
+dockerfileKG/dataset/dockerfile-embeddings
+dockerfileKG/dataset/dockerfile-whitening
+dockerfileKG/dataset/tokenized

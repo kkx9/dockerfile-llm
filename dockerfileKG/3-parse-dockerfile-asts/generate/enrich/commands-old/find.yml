@@ -1,0 +1,62 @@
+command:
+  providerFor:
+    - find
+  prefix: SC-FIND
+  fixThese: &fixThese
+    - -delete
+    - -print0
+    - -print
+    - -execdir
+    - -exec
+    - -type
+    - -name
+    - -regextype
+    - -regex
+    - -wholename
+    - -perm
+    - -path
+    - -depth
+    - -mindepth
+    - -maxdepth
+  options: &options
+    booleans:
+      - option: --delete
+        description: Delete files
+      - option: --print0
+        description: Print the full file name on the standard output, followed by a null character
+      - option: --print
+        description: Print the full file name on the standard output
+      - option: --execdir
+        description: Execute command in the directory where the file is located
+      - option: --exec
+        description: Execute command
+      - option: --depth
+        description: Process each directory's contents before the directory itself
+    strings:
+      - option: --type
+        description: File type
+      - option: --name
+        description: Base of file name
+      - option: --regextype
+        description: Regular expression type
+      - option: --regex
+        description: Regular expression
+      - option: --wholename
+        description: File name with path
+      - option: --perm
+        description: File permissions
+      - option: --path
+        description: File path
+      - option: --mindepth
+        description: Minimum directory depth
+      - option: --maxdepth
+        description: Maximum directory depth
+  scenarios:
+    - cmd: $0 <target>
+      options: *options
+      name: SC-FIND
+      fixBadLongNames: *fixThese
+      captureAllAfter:
+        match: [ '--execdir', '--exec' ]
+        name: args
+      rejectIf: [ '-a', '-o', '(', ')', '!', '-and', '-or', '-not' ]

@@ -1,0 +1,63 @@
+command:
+  providerFor:
+    - gpg
+  prefix: SC-GPG
+  options: &options
+    booleans:
+      - option: --version
+        description: Show the program version
+      - option: --verbose
+        description: Increase the verbosity of messages
+      - option: --fingerprint
+        description: List fingerprints
+      - option: --batch
+        description: Use batch mode
+      - option: -y, --yes
+        description: Assume yes on all queries
+      - option: --no-tty
+        description: Do not use TTY
+      - option: --import
+        description: Import keys
+      - option: --fast-import
+        description: Fast import keys
+      - option: -a, --armor
+        description: Create ASCII armored output
+      - option: --no-batch
+        description: Disable batch mode
+      - option: -q, --quiet
+        description: Be more quiet
+      - option: --enarmor
+        description: Create ASCII armored output
+      - option: --dearmor
+        description: Convert ASCII armored output to binary
+      - option: -d, --decrypt
+        description: Decrypt data
+      - option: --refresh-keys
+        description: Update all keys
+    paths:
+      - option: --homedir
+        description: Set the home directory
+      - option: --options
+        description: Read options from file
+    strings:
+      - option: --trusted-key
+        description: Set a trusted key
+      - option: --recv-key
+        description: Receive key from keyserver
+      - option: --recv
+        description: Receive key from keyserver
+      - option: --keyserver
+        description: Set the keyserver to use
+    arrays:
+      - option: --export
+        description: Export keys
+      - option: --verify
+        description: Verify a signature
+      - option: --recv-keys
+        description: Receive keys from keyserver
+      - option: --keyserver-options
+        description: Set options for the keyserver
+  scenarios:
+    - cmd: $0 [targets...]
+      options: *options
+      name: SC-GPG

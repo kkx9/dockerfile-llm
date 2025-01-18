@@ -1,0 +1,67 @@
+command:
+  providerFor:
+    - sed
+  prefix: SC-SED
+  options: &options
+    booleans:
+      - option: -i, --in-place
+        description: Edit files in place
+      - option: --posix
+        description: Disable all GNU extensions
+      - option: -n, --quiet
+        description: Suppress automatic printing of pattern space
+      - option: -n, --silent
+        description: Suppress automatic printing of pattern space
+      - option: -s, --separate
+        description: Consider files as separate rather than as a single continuous long stream
+      - option: --sandbox
+        description: Operate in sandbox mode
+      - option: -u, --unbuffered
+        description: Load minimal amounts of data from the input files and flush the output buffers more often
+      - option: -z, --null-data
+        description: Separate lines by NUL characters
+      - option: --help
+        description: Display help information
+      - option: --version
+        description: Output version information and exit
+      - option: -E, --regexp-extended
+        description: Use extended regular expressions in the script
+      - option: -E, -r
+        description: Use extended regular expressions in the script
+    arrays:
+      - option: -e, --expression
+        description: Add the script to the commands to be executed
+    paths:
+      - option: -f, --file
+        description: Add the contents of script-file to the commands to be executed
+  scenarios:
+    - cmd: $0 <expression> [paths...]
+      options: *options
+      name: SC-SED
+      rejectIf: [ '-e', '--expression', '-f', '--file' ]
+    - cmd: $0 [paths...]
+      options: *options
+      name: SC-SED
+      mustHave:
+        - -e
+      stealFromArrayFor:
+        array: e
+        for: paths
+    - cmd: $0 [paths...]
+      options: *options
+      name: SC-SED
+      mustHave:
+        - --expression
+      stealFromArrayFor:
+        array: expression
+        for: paths
+    - cmd: $0 [paths...]
+      options: *options
+      name: SC-SED
+      mustHave:
+        - -f
+    - cmd: $0 [paths...]
+      options: *options
+      name: SC-SED
+      mustHave:
+        - --file

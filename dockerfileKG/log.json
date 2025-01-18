@@ -1,0 +1,610 @@
+{
+    "type": "DOCKER-FILE",
+    "children": [
+        {
+            "type": "DOCKER-FROM",
+            "children": [
+                {
+                    "value": "passenger-ruby21",
+                    "type": "DOCKER-IMAGE-NAME",
+                    "children": []
+                },
+                {
+                    "value": "phusion",
+                    "type": "DOCKER-IMAGE-REPO",
+                    "children": []
+                },
+                {
+                    "type": "DOCKER-IMAGE-TAG",
+                    "children": []
+                }
+            ],
+            "cmd_dep": [],
+            "cmdid": 0
+        },
+        {
+            "type": "DOCKER-ENV",
+            "children": [
+                {
+                    "value": "HOME",
+                    "type": "DOCKER-NAME",
+                    "children": []
+                },
+                {
+                    "value": "/root",
+                    "type": "DOCKER-LITERAL",
+                    "children": [],
+                    "abs-type": [
+                        "ABS-MAYBE-PATH",
+                        "ABS-PATH-ROOT-DIR",
+                        "ABS-FILENAME",
+                        "ABS-PATH-ABSOLUTE"
+                    ]
+                }
+            ],
+            "cmd_dep": [
+                0
+            ],
+            "cmdid": 1
+        },
+        {
+            "type": "DOCKER-CMD",
+            "children": [
+                {
+                    "value": "/sbin/my_init",
+                    "type": "DOCKER-CMD-ARG",
+                    "children": [],
+                    "abs-type": [
+                        "ABS-MAYBE-PATH",
+                        "ABS-FILENAME",
+                        "ABS-PATH-ABSOLUTE"
+                    ]
+                }
+            ],
+            "cmd_dep": [
+                0
+            ],
+            "cmdid": 2
+        },
+        {
+            "type": "DOCKER-RUN",
+            "children": [
+                {
+                    "type": "BASH-SCRIPT",
+                    "children": [
+                        {
+                            "type": "SC-APT-GET-CLEAN",
+                            "children": []
+                        }
+                    ]
+                }
+            ],
+            "install_pkg": [],
+            "used_pkg": [
+                "apt-get",
+                "apt"
+            ],
+            "file_relate": {
+                "source": [],
+                "target": []
+            },
+            "cmd_dep": [
+                0
+            ],
+            "cmdid": 3
+        },
+        {
+            "type": "DOCKER-RUN",
+            "children": [
+                {
+                    "type": "BASH-SCRIPT",
+                    "children": [
+                        {
+                            "type": "SC-RM",
+                            "children": [
+                                {
+                                    "type": "SC-RM-F-RECURSIVE",
+                                    "children": []
+                                },
+                                {
+                                    "type": "SC-RM-F-FORCE",
+                                    "children": []
+                                },
+                                {
+                                    "type": "SC-RM-PATHS",
+                                    "children": [
+                                        {
+                                            "type": "SC-RM-PATH",
+                                            "children": [
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "/var/lib/apt/lists/",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL",
+                                                            "abs-type": [
+                                                                "ABS-PATH-VAR",
+                                                                "ABS-MAYBE-PATH",
+                                                                "ABS-APT-LISTS",
+                                                                "ABS-PATH-ABSOLUTE"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "value": "*",
+                                                            "children": [],
+                                                            "type": "BASH-GLOB",
+                                                            "abs-type": [
+                                                                "ABS-GLOB-STAR",
+                                                                "ABS-FILENAME"
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "type": "BASH-CONCAT"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "SC-RM-PATH",
+                                            "children": [
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "/tmp/",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL",
+                                                            "abs-type": [
+                                                                "ABS-MAYBE-PATH",
+                                                                "ABS-PATH-ABSOLUTE"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "value": "*",
+                                                            "children": [],
+                                                            "type": "BASH-GLOB",
+                                                            "abs-type": [
+                                                                "ABS-GLOB-STAR",
+                                                                "ABS-FILENAME"
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "type": "BASH-CONCAT"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "SC-RM-PATH",
+                                            "children": [
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "/var/tmp/",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL",
+                                                            "abs-type": [
+                                                                "ABS-PATH-VAR",
+                                                                "ABS-MAYBE-PATH",
+                                                                "ABS-PATH-ABSOLUTE"
+                                                            ]
+                                                        },
+                                                        {
+                                                            "value": "*",
+                                                            "children": [],
+                                                            "type": "BASH-GLOB",
+                                                            "abs-type": [
+                                                                "ABS-GLOB-STAR",
+                                                                "ABS-FILENAME"
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "type": "BASH-CONCAT"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "install_pkg": [],
+            "used_pkg": [
+                "rmdir",
+                "rm"
+            ],
+            "file_relate": {
+                "source": [
+                    "./var/lib/apt/lists/",
+                    "./tmp/",
+                    "./var/tmp/"
+                ],
+                "target": [
+                    "./var/lib/apt/lists/",
+                    "./tmp/",
+                    "./var/tmp/"
+                ]
+            },
+            "cmd_dep": [
+                0
+            ],
+            "cmdid": 4
+        },
+        {
+            "type": "DOCKER-RUN",
+            "children": [
+                {
+                    "type": "BASH-SCRIPT",
+                    "children": [
+                        {
+                            "type": "UNKNOWN",
+                            "children": []
+                        }
+                    ]
+                }
+            ],
+            "install_pkg": [],
+            "used_pkg": [],
+            "file_relate": {
+                "source": [],
+                "target": []
+            },
+            "cmd_dep": [
+                0
+            ],
+            "cmdid": 5
+        },
+        {
+            "type": "DOCKER-RUN",
+            "children": [
+                {
+                    "type": "BASH-SCRIPT",
+                    "children": [
+                        {
+                            "type": "SC-RM",
+                            "children": [
+                                {
+                                    "type": "SC-RM-F-FORCE",
+                                    "children": []
+                                },
+                                {
+                                    "type": "SC-RM-PATHS",
+                                    "children": [
+                                        {
+                                            "type": "SC-RM-PATH",
+                                            "children": [
+                                                {
+                                                    "value": "/etc/nginx/sites-enabled/default",
+                                                    "children": [],
+                                                    "type": "BASH-LITERAL",
+                                                    "abs-type": [
+                                                        "ABS-MAYBE-PATH",
+                                                        "ABS-FILENAME",
+                                                        "ABS-PATH-ABSOLUTE"
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "install_pkg": [],
+            "used_pkg": [
+                "rmdir",
+                "rm"
+            ],
+            "file_relate": {
+                "source": [
+                    "./etc/nginx/sites-enabled/default"
+                ],
+                "target": [
+                    "./etc/nginx/sites-enabled/default"
+                ]
+            },
+            "cmd_dep": [
+                0
+            ],
+            "cmdid": 6
+        },
+        {
+            "type": "DOCKER-RUN",
+            "children": [
+                {
+                    "type": "BASH-SCRIPT",
+                    "children": [
+                        {
+                            "type": "SC-RM",
+                            "children": [
+                                {
+                                    "type": "SC-RM-F-FORCE",
+                                    "children": []
+                                },
+                                {
+                                    "type": "SC-RM-PATHS",
+                                    "children": [
+                                        {
+                                            "type": "SC-RM-PATH",
+                                            "children": [
+                                                {
+                                                    "value": "/etc/service/nginx/down",
+                                                    "children": [],
+                                                    "type": "BASH-LITERAL",
+                                                    "abs-type": [
+                                                        "ABS-MAYBE-PATH",
+                                                        "ABS-FILENAME",
+                                                        "ABS-PATH-ABSOLUTE"
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "install_pkg": [],
+            "used_pkg": [
+                "rmdir",
+                "rm"
+            ],
+            "file_relate": {
+                "source": [
+                    "./etc/service/nginx/down"
+                ],
+                "target": [
+                    "./etc/service/nginx/down"
+                ]
+            },
+            "cmd_dep": [
+                0
+            ],
+            "cmdid": 7
+        },
+        {
+            "type": "DOCKER-ADD",
+            "children": [
+                {
+                    "type": "DOCKER-ADD-TARGET",
+                    "children": [
+                        {
+                            "value": "/etc/nginx/sites-enabled/2050.conf",
+                            "type": "DOCKER-PATH",
+                            "children": [],
+                            "abs-type": [
+                                "ABS-MAYBE-PATH",
+                                "ABS-FILENAME",
+                                "ABS-PATH-ABSOLUTE"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "DOCKER-ADD-SOURCE",
+                    "children": [
+                        {
+                            "value": "util/nginx.conf",
+                            "type": "DOCKER-PATH",
+                            "children": [],
+                            "abs-type": [
+                                "ABS-FILENAME"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "file_relate": {
+                "source": [],
+                "target": [
+                    "./etc/nginx/sites-enabled/2050.conf"
+                ]
+            },
+            "cmd_dep": [
+                0
+            ],
+            "cmdid": 8
+        },
+        {
+            "type": "DOCKER-ADD",
+            "children": [
+                {
+                    "type": "DOCKER-ADD-TARGET",
+                    "children": [
+                        {
+                            "value": "/home/app/2050",
+                            "type": "DOCKER-PATH",
+                            "children": [],
+                            "abs-type": [
+                                "ABS-MAYBE-PATH",
+                                "ABS-FILENAME",
+                                "ABS-PATH-ABSOLUTE"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "DOCKER-ADD-SOURCE",
+                    "children": [
+                        {
+                            "value": ".",
+                            "type": "DOCKER-PATH",
+                            "children": [],
+                            "abs-type": [
+                                "ABS-MAYBE-PATH"
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "file_relate": {
+                "source": [],
+                "target": [
+                    "./home/app/2050"
+                ]
+            },
+            "cmd_dep": [
+                0
+            ],
+            "cmdid": 9
+        },
+        {
+            "type": "DOCKER-WORKDIR",
+            "children": [
+                {
+                    "value": "/home/app/2050",
+                    "type": "DOCKER-PATH",
+                    "children": [],
+                    "abs-type": [
+                        "ABS-MAYBE-PATH",
+                        "ABS-FILENAME",
+                        "ABS-PATH-ABSOLUTE"
+                    ]
+                }
+            ],
+            "file_relate": {
+                "source": [
+                    "/home/app/2050"
+                ],
+                "target": [
+                    "/home/app/2050"
+                ]
+            },
+            "cmd_dep": [
+                0
+            ],
+            "cmdid": 10
+        },
+        {
+            "type": "DOCKER-RUN",
+            "children": [
+                {
+                    "type": "BASH-SCRIPT",
+                    "children": [
+                        {
+                            "type": "UNKNOWN",
+                            "children": []
+                        }
+                    ]
+                }
+            ],
+            "install_pkg": [],
+            "used_pkg": [],
+            "file_relate": {
+                "source": [],
+                "target": []
+            },
+            "cmd_dep": [
+                0
+            ],
+            "cmdid": 11
+        },
+        {
+            "type": "DOCKER-WORKDIR",
+            "children": [
+                {
+                    "value": "/home/app/2050/model",
+                    "type": "DOCKER-PATH",
+                    "children": [],
+                    "abs-type": [
+                        "ABS-MAYBE-PATH",
+                        "ABS-FILENAME",
+                        "ABS-PATH-ABSOLUTE"
+                    ]
+                }
+            ],
+            "file_relate": {
+                "source": [
+                    "/home/app/2050/model"
+                ],
+                "target": [
+                    "/home/app/2050/model"
+                ]
+            },
+            "cmd_dep": [
+                0
+            ],
+            "cmdid": 12
+        },
+        {
+            "type": "DOCKER-RUN",
+            "children": [
+                {
+                    "type": "BASH-SCRIPT",
+                    "children": [
+                        {
+                            "type": "UNKNOWN",
+                            "children": []
+                        }
+                    ]
+                }
+            ],
+            "install_pkg": [],
+            "used_pkg": [],
+            "file_relate": {
+                "source": [],
+                "target": []
+            },
+            "cmd_dep": [
+                0
+            ],
+            "cmdid": 13
+        },
+        {
+            "type": "DOCKER-WORKDIR",
+            "children": [
+                {
+                    "value": "/home/app/2050/src",
+                    "type": "DOCKER-PATH",
+                    "children": [],
+                    "abs-type": [
+                        "ABS-MAYBE-PATH",
+                        "ABS-MAYBE-SRC-DIR",
+                        "ABS-FILENAME",
+                        "ABS-PATH-ABSOLUTE"
+                    ]
+                }
+            ],
+            "file_relate": {
+                "source": [
+                    "/home/app/2050/src"
+                ],
+                "target": [
+                    "/home/app/2050/src"
+                ]
+            },
+            "cmd_dep": [
+                0
+            ],
+            "cmdid": 14
+        },
+        {
+            "type": "DOCKER-RUN",
+            "children": [
+                {
+                    "type": "BASH-SCRIPT",
+                    "children": [
+                        {
+                            "type": "UNKNOWN",
+                            "children": []
+                        }
+                    ]
+                }
+            ],
+            "install_pkg": [],
+            "used_pkg": [],
+            "file_relate": {
+                "source": [],
+                "target": []
+            },
+            "cmd_dep": [
+                0
+            ],
+            "cmdid": 15
+        }
+    ],
+    "file_sha": "23f76775870765a912f7859359e76c082c231880"
+}

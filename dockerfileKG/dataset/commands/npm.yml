@@ -1,0 +1,133 @@
+command:
+  providerFor:
+    - npm
+  prefix: SC-NPM
+  optionsInstall: &optionsInstall
+    booleans:
+      - option: -P, --save-prod
+        description: Save package to dependencies
+      - option: -D, --save-dev
+        description: Save package to devDependencies
+      - option: -O, --save-optional
+        description: Save package to optionalDependencies
+      - option: --no-save
+        description: Prevent saving to dependencies
+      - option: -E, --save-exact
+        description: Install exact version
+      - option: -B, --save-bundle
+        description: Save package to bundleDependencies
+      - option: --dry-run
+        description: Only report changes without making them
+      - option: --package-lock-only
+        description: Only update package-lock.json
+      - option: -f, --force
+        description: Force install
+      - option: -g, --global
+        description: Install package globally
+      - option: --global-style
+        description: Use global style for installs
+      - option: --ignore-scripts
+        description: Ignore pre/post install scripts
+      - option: --legacy-bundling
+        description: Use legacy bundling
+      - option: --link
+        description: Link package
+      - option: --no-bin-links
+        description: Prevent creation of symlinks
+      - option: --no-optional
+        description: Prevent installation of optional dependencies
+      - option: --no-shrinkwrap
+        description: Ignore npm-shrinkwrap.json
+      - option: --no-package-lock
+        description: Ignore package-lock.json
+      - option: --no-audit
+        description: Skip audit
+      - option: --no-color
+        description: Disable color in output
+      - option: --save
+        description: Save package to dependencies
+      - option: --production
+        description: Install only production dependencies
+    strings:
+      - option: --only
+        description: Restrict to specific dependency type
+      - option: --tag
+        description: Install specific tag
+      - option: --prefix
+        description: Set prefix for installation
+    paths:
+      - option: --nodedir
+        description: Set path to node source
+  scenarios:
+    - cmd: $0 install [packages...]
+      options: *optionsInstall
+      name: SC-NPM-INSTALL
+    - cmd: $0 i [packages...]
+      options: *optionsInstall
+      name: SC-NPM-INSTALL
+    - cmd: $0 add [packages...]
+      options: *optionsInstall
+      name: SC-NPM-INSTALL
+    - cmd: $0 ci
+      options: *optionsInstall
+      name: SC-NPM-CI
+    - cmd: $0 uninstall [packages...]
+      options: *optionsInstall
+      name: SC-NPM-REMOVE
+    - cmd: $0 remove [packages...]
+      options: *optionsInstall
+      name: SC-NPM-REMOVE
+    - cmd: $0 build [folder]
+      options: {}
+      name: SC-NPM-BUILD
+    - cmd: $0 run [args...]
+      options: {}
+      name: SC-NPM-RUN
+    - cmd: $0 run-script [args...]
+      options: {}
+      name: SC-NPM-RUN-SCRIPT
+    - cmd: $0 cache clean
+      options:
+        booleans:
+          - option: --force
+            description: Force clean cache
+      name: SC-NPM-CACHE-CLEAN
+    - cmd: $0 cache rm
+      options:
+        booleans:
+          - option: --force
+            description: Force remove cache
+      name: SC-NPM-CACHE-CLEAN
+    - cmd: $0 cache clear
+      options:
+        booleans:
+          - option: --force
+            description: Force clear cache
+      name: SC-NPM-CACHE-CLEAN
+    - cmd: $0 config set <key> <value>
+      options: {}
+      name: SC-NPM-CONFIG-SET
+    - cmd: $0 config set <combined>
+      options: {}
+      name: SC-NPM-CONFIG-SET
+    - cmd: $0 link
+      options: {}
+      name: SC-NPM-LINK
+    - cmd: $0 prune [packages...]
+      options:
+        booleans:
+          - option: --production
+            description: Remove devDependencies
+          - option: --json
+            description: Output as JSON
+          - option: --dry-run
+            description: Report changes without making them
+      name: SC-NPM-PRUNE
+    - cmd: $0
+      options:
+        booleans:
+          - option: --help
+            description: Show help
+          - option: -v, --version
+            description: Show version
+      name: SC-NPM

@@ -1,0 +1,95 @@
+command:
+  prefix: SC-APT-KEY
+  providerFor:
+    - apt-key
+  options: &options
+    paths:
+      - option: --keyring
+        description: Specify the keyring file
+  optionsAdv: &optionsAdv
+    booleans:
+      - option: --version
+        description: Show version information
+      - option: --verbose
+        description: Enable verbose mode
+      - option: --fingerprint
+        description: List fingerprints
+      - option: --batch
+        description: Use batch mode
+      - option: -y, --yes
+        description: Assume yes to all queries
+      - option: --no-tty
+        description: Do not use TTY
+      - option: --import
+        description: Import keys
+      - option: --fast-import
+        description: Fast import keys
+      - option: -a, --armor
+        description: Create ASCII armored output
+      - option: --no-batch
+        description: Disable batch mode
+      - option: -q, --quiet
+        description: Run quietly
+      - option: --enarmor
+        description: Create ASCII armored output
+      - option: --dearmor
+        description: Convert ASCII armored output to binary
+      - option: -d, --decrypt
+        description: Decrypt data
+      - option: --refresh-keys
+        description: Refresh keys
+    paths:
+      - option: --homedir
+        description: Set the home directory
+      - option: --options
+        description: Read options from file
+    strings:
+      - option: --trusted-key
+        description: Add a trusted key
+      - option: --recv-key
+        description: Receive key from keyserver
+      - option: --recv
+        description: Receive key from keyserver
+      - option: --keyserver
+        description: Specify keyserver
+    arrays:
+      - option: --export
+        description: Export keys
+      - option: --verify
+        description: Verify signatures
+      - option: --recv-keys
+        description: Receive keys from keyserver
+      - option: --keyserver-options
+        description: Set options for keyserver
+  scenarios:
+    - cmd: $0 add <filename>
+      options: *options
+      name: SC-APT-KEY-ADD
+    - cmd: $0 del <keyid>
+      options: *options
+      name: SC-APT-KEY-DEL
+    - cmd: $0 export <keyid>
+      options: *options
+      name: SC-APT-KEY-EXPORT
+    - cmd: $0 exportall
+      options: *options
+      name: SC-APT-KEY-EXPORT-ALL
+    - cmd: $0 list
+      options: *options
+      name: SC-APT-KEY-LIST
+    - cmd: $0 finger
+      options: *options
+      name: SC-APT-KEY-FINGER
+    - cmd: $0 fingerprint <key>
+      options: *options
+      name: SC-APT-KEY-FINGERPRINT
+    - cmd: $0 adv
+      options:
+        merge: [ *options, *optionsAdv ]
+      name: SC-APT-KEY-ADV
+    - cmd: $0 update
+      options: *options
+      name: SC-APT-KEY-UPDATE
+    - cmd: $0 net-update
+      options: *options
+      name: SC-APT-KEY-NET-UPDATE

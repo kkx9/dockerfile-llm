@@ -1,0 +1,26 @@
+command:
+  providerFor:
+    - groupadd
+  prefix: SC-GROUP-ADD
+  scenarios:
+    - cmd: $0 <group>
+      options:
+        booleans:
+          - option: -f, --force
+            description: Force the creation of the group
+          - option: -h, --help
+            description: Display help message
+          - option: -o, --non-unique
+            description: Allow creating groups with non-unique GID
+          - option: -r, --system
+            description: Create a system group
+        strings:
+          - option: -g, --gid
+            description: Specify the GID for the new group
+        paths:
+          - option: -R, --root
+            description: Apply changes in the specified root directory
+        arrays:
+          - option: -k, --key
+            description: Specify the key for the new group
+      name: SC-GROUP-ADD

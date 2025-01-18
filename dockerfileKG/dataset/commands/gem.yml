@@ -1,0 +1,157 @@
+command:
+  providerFor:
+    - gem
+  prefix: SC-GEM
+  installOrUpdateOptions: &installOrUpdateOptions
+    booleans:
+      - option: -h, --help
+        description: Show help message
+      - option: -V, --verbose
+        description: Enable verbose mode
+      - option: --no-verbose
+        description: Disable verbose mode
+      - option: -q, --quiet
+        description: Quiet mode
+      - option: --silent
+        description: Silent mode
+      - option: --backtrace
+        description: Show backtrace
+      - option: --debug
+        description: Enable debug mode
+      - option: --norc
+        description: Do not load ~/.gemrc file
+      - option: -l, --local
+        description: Restrict operations to the local machine
+      - option: -r, --remote
+        description: Restrict operations to the remote machine
+      - option: -b, --both
+        description: Perform operations on both local and remote machines
+      - option: --clear-source
+        description: Clear the gem sources
+      - option: --no-http-proxy
+        description: Do not use HTTP proxy
+      - option: --no-lock
+        description: Do not create a lock file
+      - option: --no-suggestions
+        description: Do not show suggestions
+      - option: --lock
+        description: Create a lock file
+      - option: --suggestions
+        description: Show suggestions
+      - option: --default
+        description: Use default options
+      - option: --post-install-message
+        description: Show post-install message
+      - option: --no-post-install-message
+        description: Do not show post-install message
+      - option: --minimal-deps
+        description: Install minimal dependencies
+      - option: --conservative
+        description: Conservative update
+      - option: --development
+        description: Install development dependencies
+      - option: --development-all
+        description: Install all development dependencies
+      - option: user-install
+        description: Install gem in user directory
+      - option: --no-user-install
+        description: Do not install gem in user directory
+      - option: --ignore-dependencies
+        description: Ignore dependencies
+      - option: -f, --force
+        description: Force operation
+      - option: --no-force
+        description: Do not force operation
+      - option: -w, --wrappers
+        description: Use bin wrappers
+      - option: --no-wrappers
+        description: Do not use bin wrappers
+      - option: --vendor
+        description: Install gem in vendor directory
+      - option: -N, --no-document
+        description: Do not generate documentation
+      - option: -E, --env-shebang
+        description: Use /usr/bin/env in shebang
+      - option: --no-env-shebang
+        description: Do not use /usr/bin/env in shebang
+      - option: -u, --update-sources
+        description: Update gem sources
+      - option: --no-update-sources
+        description: Do not update gem sources
+      - option: --prerelease
+        description: Allow prerelease versions
+      - option: --no-prerelease
+        description: Do not allow prerelease versions
+      - option: --no-ri
+        description: Do not generate ri documentation
+      - option: --no-rdoc
+        description: Do not generate rdoc documentation
+      - option: --system
+        description: Install gem system-wide
+    strings:
+      - option: --platform
+        description: Specify the platform
+      - option: -P, --trust-policy
+        description: Specify the trust policy
+      - option: -s, --source
+        description: Specify the source
+      - option: -p, --http-proxy
+        description: Specify the HTTP proxy
+    paths:
+      - option: -i, --install-dir
+        description: Specify the installation directory
+      - option: -n, --bindir
+        description: Specify the binary directory
+      - option: -g, --file
+        description: Specify the gem file
+      - option: --config-file
+        description: Specify the configuration file
+      - option: --build-root
+        description: Specify the build root
+    arrays:
+      - option: -v, --version
+        description: Specify the version
+      - option: --document
+        description: Specify the documentation format
+  scenarios:
+    - cmd: $0 install [gems...]
+      options: *installOrUpdateOptions
+      name: SC-GEM-INSTALL
+    - cmd: $0 update [gems...]
+      options: *installOrUpdateOptions
+      name: SC-GEM-UPDATE
+    - cmd: $0 cleanup
+      options: {}
+      name: SC-GEM-CLEAN
+    - cmd: $0 list
+      options: {}
+      name: SC-GEM-LIST
+    - cmd: $0 build <path>
+      options:
+        booleans:
+          - option: -h, --help
+            description: Show help message
+          - option: -V, --verbose
+            description: Enable verbose mode
+          - option: --no-verbose
+            description: Disable verbose mode
+          - option: -q, --quiet
+            description: Quiet mode
+          - option: --silent
+            description: Silent mode
+          - option: --backtrace
+            description: Show backtrace
+          - option: --debug
+            description: Enable debug mode
+          - option: --norc
+            description: Do not load ~/.gemrc file
+          - option: --force
+            description: Force operation
+          - option: --strict
+            description: Enable strict mode
+        paths:
+          - option: -o, --output
+            description: Specify the output directory
+          - option: --config-file
+            description: Specify the configuration file
+      name: SC-GEM-BUILD

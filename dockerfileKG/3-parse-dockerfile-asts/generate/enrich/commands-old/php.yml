@@ -1,0 +1,65 @@
+command:
+  providerFor:
+    - php
+  prefix: SC-PHP
+  scenarios:
+    - cmd: $0 [script] [args...]
+      options:
+        boolean:
+          - option: -a, --interactive
+            description: Run interactively
+          - option: -C, --nochdir
+            description: Do not change directory
+          - option: -q, --no-header
+            description: Suppress HTTP header output
+          - option: -n, --no-php-ini
+            description: Do not use the PHP configuration file
+          - option: -e
+            description: Generate extended information for debugger/profiler
+          - option: -h, --help
+            description: Display help information
+          - option: -H, --hide-args
+            description: Hide script arguments from external tools
+          - option: -i, --info
+            description: Display PHP information
+          - option: -L
+            description: Syntax check only (lint)
+          - option: -m, --modules
+            description: Display compiled-in modules
+          - option: -s, --syntax-highlight
+            description: Output syntax highlighted source
+          - option: -v, --version
+            description: Display PHP version
+          - option: -w, --stripped
+            description: Output source with stripped comments and whitespace
+        string:
+          - option: -b, --bindpath
+            description: Bind path for FPM
+          - option: -T, --timing
+            description: Measure execution time
+          - option: -g, --global
+            description: Define global variable
+          - option: -r, --run
+            description: Run PHP code
+          - option: -B, --process-begin
+            description: Run PHP code before processing input
+          - option: -R, --process-code
+            description: Run PHP code for each input line
+          - option: -E, --process-end
+            description: Run PHP code after processing input
+        paths:
+          - option: -f, --file
+            description: Parse and execute file
+          - option: -F, --process-file
+            description: Parse and execute file for each input line
+          - option: -c, --php-ini
+            description: Path to php.ini file
+          - option: -z, --zend-extension
+            description: Load Zend extension
+        arrays:
+          - option: -d, --define
+            description: Define INI entry
+      name: SC-PHP
+      captureAllAfter:
+        match: [ '--' ]
+        name: args

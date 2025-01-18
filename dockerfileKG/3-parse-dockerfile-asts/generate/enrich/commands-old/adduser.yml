@@ -1,0 +1,63 @@
+command:
+  prefix: SC-ADD-USER
+  providerFor:
+    - adduser
+  options: &options
+    booleans:
+      - option: -D, --defaults
+        description: Use default options
+      - option: -m, --create-home
+        description: Create home directory
+      - option: -M
+        description: Do not create home directory
+      - option: -N, --no-user-group
+        description: Do not create a group with the same name as the user
+      - option: -o, --non-unique
+        description: Allow creating a user with a duplicate (non-unique) UID
+      - option: -r, --system
+        description: Create a system account
+      - option: -U, --user-group
+        description: Create a group with the same name as the user
+      - option: --disabled-password
+        description: Disable the password for the new account
+      - option: -S, --system
+        description: Create a system account
+    strings:
+      - option: -c, --comment
+        description: Add a comment for the user
+      - option: -e, --expiredate
+        description: Set account expiration date
+      - option: -f, --inactive
+        description: Set the number of days after a password expires until the account is permanently disabled
+      - option: -g, --gid
+        description: Set the group ID for the new user
+      - option: -p, --password
+        description: Set the password for the new user
+      - option: -s, --shell
+        description: Specify the login shell for the new user
+      - option: -u, --uid
+        description: Set the user ID for the new user
+      - option: -Z, --selinux-user
+        description: Specify the SELinux user for the new user
+      - option: --ingroup
+        description: Add the new user to an existing group
+    paths:
+      - option: -b, --base-dir
+        description: Specify the base directory for the new home directory
+      - option: -d, --home
+        description: Specify the home directory for the new user
+      - option: -h
+        description: Display help message and exit
+      - option: -k, --skel
+        description: Specify an alternative skeleton directory
+    arrays:
+      - option: -K, --key
+        description: Override /etc/login.defs defaults
+      - option: --gecos
+        description: Set GECOS field for the new user
+      - option: -G, --groups
+        description: Add the new user to supplementary groups
+  scenarios:
+    - cmd: $0 [user] [group]
+      options: *options
+      name: SC-ADD-USER

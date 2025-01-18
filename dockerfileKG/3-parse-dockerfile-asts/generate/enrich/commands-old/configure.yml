@@ -1,0 +1,17 @@
+command:
+  providerFor:
+    - './configure'
+  prefix: SC-CONFIGURE
+  scenarios:
+    - cmd: $0 [ignores...]
+      options:
+        strings:
+          - option: --build
+            description: Specify the build type
+        booleans:
+          - option: --with-ssl
+            description: Enable SSL support
+        paths:
+          - option: --prefix
+            description: Specify the installation prefix
+      name: SC-CONFIGURE

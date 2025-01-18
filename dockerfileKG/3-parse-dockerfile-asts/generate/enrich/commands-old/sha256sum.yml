@@ -1,0 +1,32 @@
+command:
+  providerFor:
+    - sha256sum
+  prefix: SC-SHA-256-SUM
+  options: &options
+    booleans:
+      - option: -b, --binary
+        description: Read in binary mode
+      - option: -c, --check
+        description: Read SHA256 sums from the FILEs and check them
+      - option: --tag
+        description: Create a BSD-style checksum
+      - option: -t, --text
+        description: Read in text mode (default)
+      - option: --ignore-missing
+        description: Don't fail or report status for missing files
+      - option: --quiet
+        description: Don't print OK for each successfully verified file
+      - option: --status
+        description: Don't output anything, status code shows success
+      - option: --strict
+        description: Exit non-zero for improperly formatted checksum lines
+      - option: -w, --warn
+        description: Warn about improperly formatted checksum lines
+      - option: --help
+        description: Display this help and exit
+      - option: --version
+        description: Output version information and exit
+  scenarios:
+    - cmd: $0 [files...]
+      options: *options
+      name: SC-SHA-256-SUM

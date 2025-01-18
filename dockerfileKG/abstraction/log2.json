@@ -1,0 +1,353 @@
+{
+    "type": "DOCKER-FILE",
+    "children": [
+        {
+            "type": "DOCKER-FROM",
+            "children": [
+                {
+                    "value": "%%FROM%%",
+                    "type": "DOCKER-IMAGE-NAME",
+                    "children": []
+                }
+            ],
+            "cmd_dep": [],
+            "cmdid": 0
+        },
+        {
+            "type": "DOCKER-RUN",
+            "children": [
+                {
+                    "type": "BASH-SCRIPT",
+                    "children": [
+                        {
+                            "type": "UNKNOWN",
+                            "children": []
+                        }
+                    ]
+                }
+            ],
+            "install_pkg": [],
+            "used_pkg": [],
+            "file_relate": {
+                "source": [],
+                "target": []
+            },
+            "cmd_dep": [
+                0
+            ],
+            "cmdid": 1
+        },
+        {
+            "type": "DOCKER-RUN",
+            "children": [
+                {
+                    "type": "BASH-SCRIPT",
+                    "children": [
+                        {
+                            "type": "SC-SET",
+                            "children": [
+                                {
+                                    "type": "SC-SET-F-E",
+                                    "children": []
+                                },
+                                {
+                                    "type": "SC-SET-F-U",
+                                    "children": []
+                                },
+                                {
+                                    "type": "SC-SET-F-X",
+                                    "children": []
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "install_pkg": [],
+            "used_pkg": [
+                "set",
+                "setx"
+            ],
+            "file_relate": {
+                "source": [],
+                "target": []
+            },
+            "cmd_dep": [
+                0
+            ],
+            "cmdid": 2
+        },
+        {
+            "type": "DOCKER-RUN",
+            "children": [
+                {
+                    "type": "BASH-SCRIPT",
+                    "children": [
+                        {
+                            "type": "BASH-REDIRECT",
+                            "children": [
+                                {
+                                    "type": "BASH-REDIRECT-COMMAND",
+                                    "children": [
+                                        {
+                                            "type": "UNKNOWN",
+                                            "children": []
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "BASH-REDIRECT-REDIRECTS",
+                                    "children": [
+                                        {
+                                            "type": "BASH-REDIRECT-OVERWRITE",
+                                            "children": [
+                                                {
+                                                    "type": "BASH-PATH",
+                                                    "children": [
+                                                        {
+                                                            "value": "/usr/local/bin/rabbitmqadmin",
+                                                            "type": "BASH-LITERAL",
+                                                            "children": [],
+                                                            "abs-type": [
+                                                                "ABS-MAYBE-PATH",
+                                                                "ABS-FILENAME",
+                                                                "ABS-PATH-ABSOLUTE"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "install_pkg": [],
+            "used_pkg": [],
+            "file_relate": {
+                "source": [
+                    "./usr/local/bin/rabbitmqadmin"
+                ],
+                "target": [
+                    "./usr/local/bin/rabbitmqadmin"
+                ]
+            },
+            "cmd_dep": [
+                0
+            ],
+            "cmdid": 3
+        },
+        {
+            "type": "DOCKER-RUN",
+            "children": [
+                {
+                    "type": "BASH-SCRIPT",
+                    "children": [
+                        {
+                            "type": "BASH-CONDITION",
+                            "children": [
+                                {
+                                    "type": "BASH-CONDITION-OP",
+                                    "children": [
+                                        {
+                                            "value": "SingleBracket",
+                                            "type": "BASH-OP",
+                                            "children": [],
+                                            "abs-type": [
+                                                "ABS-FILENAME"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "BASH-CONDITION-EXP",
+                                    "children": [
+                                        {
+                                            "type": "BASH-CONDITION-UNARY",
+                                            "children": [
+                                                {
+                                                    "type": "BASH-CONDITION-UNARY-OP",
+                                                    "children": [
+                                                        {
+                                                            "value": "-s",
+                                                            "type": "BASH-OP",
+                                                            "children": [],
+                                                            "abs-type": []
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "BASH-CONDITION-UNARY-EXP",
+                                                    "children": [
+                                                        {
+                                                            "value": "/usr/local/bin/rabbitmqadmin",
+                                                            "type": "BASH-LITERAL",
+                                                            "children": [],
+                                                            "abs-type": [
+                                                                "ABS-MAYBE-PATH",
+                                                                "ABS-FILENAME",
+                                                                "ABS-PATH-ABSOLUTE"
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "install_pkg": [],
+            "used_pkg": [],
+            "file_relate": {
+                "source": [
+                    "./usr/local/bin/rabbitmqadmin"
+                ],
+                "target": [
+                    "./usr/local/bin/rabbitmqadmin"
+                ]
+            },
+            "cmd_dep": [
+                0,
+                3
+            ],
+            "cmdid": 4
+        },
+        {
+            "type": "DOCKER-RUN",
+            "children": [
+                {
+                    "type": "BASH-SCRIPT",
+                    "children": [
+                        {
+                            "type": "SC-CHMOD",
+                            "children": [
+                                {
+                                    "type": "SC-CHMOD-MODE",
+                                    "children": [
+                                        {
+                                            "children": [],
+                                            "type": "BASH-LITERAL",
+                                            "value": "+x",
+                                            "abs-type": [
+                                                "ABS-FILENAME"
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "SC-CHMOD-PATHS",
+                                    "children": [
+                                        {
+                                            "type": "SC-CHMOD-PATH",
+                                            "children": [
+                                                {
+                                                    "value": "/usr/local/bin/rabbitmqadmin",
+                                                    "children": [],
+                                                    "type": "BASH-LITERAL",
+                                                    "abs-type": [
+                                                        "ABS-MAYBE-PATH",
+                                                        "ABS-FILENAME",
+                                                        "ABS-PATH-ABSOLUTE"
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "install_pkg": [],
+            "used_pkg": [
+                "chmod"
+            ],
+            "file_relate": {
+                "source": [
+                    "./+x",
+                    "./usr/local/bin/rabbitmqadmin"
+                ],
+                "target": [
+                    "./+x",
+                    "./usr/local/bin/rabbitmqadmin"
+                ]
+            },
+            "cmd_dep": [
+                0,
+                4
+            ],
+            "cmdid": 5
+        },
+        {
+            "type": "DOCKER-RUN",
+            "children": [
+                {
+                    "type": "BASH-SCRIPT",
+                    "children": [
+                        {
+                            "type": "UNKNOWN",
+                            "children": []
+                        }
+                    ]
+                }
+            ],
+            "install_pkg": [],
+            "used_pkg": [],
+            "file_relate": {
+                "source": [],
+                "target": []
+            },
+            "cmd_dep": [
+                0
+            ],
+            "cmdid": 6
+        },
+        {
+            "type": "DOCKER-RUN",
+            "children": [
+                {
+                    "type": "BASH-SCRIPT",
+                    "children": [
+                        {
+                            "type": "UNKNOWN",
+                            "children": []
+                        }
+                    ]
+                }
+            ],
+            "install_pkg": [],
+            "used_pkg": [],
+            "file_relate": {
+                "source": [],
+                "target": []
+            },
+            "cmd_dep": [
+                0
+            ],
+            "cmdid": 7
+        },
+        {
+            "type": "DOCKER-EXPOSE",
+            "children": [
+                {
+                    "value": "15671",
+                    "type": "DOCKER-PORT",
+                    "children": []
+                }
+            ],
+            "cmd_dep": [
+                0
+            ],
+            "cmdid": 8
+        }
+    ],
+    "file_sha": "017789060b7322901b9e742ff3e86b9f0ba5aea2"
+}

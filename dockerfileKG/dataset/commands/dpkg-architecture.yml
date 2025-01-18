@@ -1,0 +1,46 @@
+command:
+  providerFor:
+    - dpkg-architecture
+  prefix: SC-DPKG-ARCHITECTURE
+  options: &options
+    booleans:
+      - option: -l, --list
+        description: List all architecture information
+      - option: -L, --list-known
+        description: List all known architectures
+      - option: -s, --print-set
+        description: Print set variables
+      - option: -u, --print-unset
+        description: Print unset variables
+      - option: -?, --help
+        description: Show help message
+      - option: --version
+        description: Show version information
+      - option: -f, --force
+        description: Force the operation
+    strings:
+      - option: -i, --is
+        description: Check if the architecture matches
+      - option: -q, --query
+        description: Query architecture information
+      - option: -c, --command
+        description: Execute a command
+      - option: -a, --host-arch
+        description: Specify the host architecture
+      - option: -t, --host-type
+        description: Specify the host type
+      - option: -A, --target-arch
+        description: Specify the target architecture
+      - option: -T, --target-type
+        description: Specify the target type
+      - option: -W, --match-wildcard
+        description: Match using wildcard
+      - option: -B, --match-bits
+        description: Match using bits
+      - option: -E, --match-endian
+        description: Match using endian
+  scenarios:
+    - cmd: $0
+      options: *options
+      name: SC-DPKG-ARCHITECTURE
+ 

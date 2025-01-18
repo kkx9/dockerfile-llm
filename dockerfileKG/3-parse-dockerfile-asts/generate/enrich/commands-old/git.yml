@@ -1,0 +1,165 @@
+command:
+  providerFor:
+    - git
+  prefix: SC-GIT
+  scenarios:
+    - cmd: $0 submodule init
+      options: {}
+      name: SC-GIT-SUBMODULE-INIT
+    - cmd: $0 submodule update
+      options:
+        booleans:
+          - option: --init
+            description: Initialize the submodules
+          - option: --recursive
+            description: Update all submodules recursively
+      name: SC-GIT-SUBMODULE-UPDATE
+    - cmd: $0 pull
+      options: {}
+      name: SC-GIT-PULL
+    - cmd: $0 remote set-url <target> <url>
+      options: {}
+      name: SC-GIT-REMOTE-SET-URL
+    - cmd: $0 reset <target>
+      options:
+        booleans:
+          - option: --hard
+            description: Reset the index and working tree
+      name: SC-GIT-RESET
+    - cmd: $0 rev-parse <target>
+      options:
+        booleans:
+          - option: --short
+            description: Show the abbreviated commit hash
+      name: SC-GIT-REV-PARSE
+    - cmd: $0 clone <url> [directory]
+      options:
+        booleans:
+          - option: --single-branch
+            description: Clone only one branch
+          - option: -q, --quiet
+            description: Suppress summary message
+          - option: --recursive
+            description: Initialize submodules
+          - option: --no-recurse-submodules
+            description: Do not initialize submodules
+          - option: --recurse-submodules
+            description: Initialize submodules recursively
+        strings:
+          - option: -b, --branch
+            description: Branch to checkout
+          - option: --depth
+            description: Create a shallow clone with a history truncated to the specified number of commits
+      name: SC-GIT-CLONE
+    - cmd: $0 init
+      options: {}
+      name: SC-GIT-INIT
+    - cmd: $0 checkout <target>
+      options:
+        booleans:
+          - option: --track
+            description: Set up tracking for a new branch
+          - option: -q, --quiet
+            description: Suppress progress reporting
+      name: SC-GIT-CHECKOUT
+    - cmd: $0 gc
+      options:
+        booleans:
+          - option: --aggressive
+            description: Run aggressive garbage collection
+          - option: -p, --prune
+            description: Prune loose objects
+      name: SC-GIT-GC
+    - cmd: $0 config <setting> <value>
+      options: 
+        booleans:
+          - option: --global
+            description: Use global config file
+          - option: --system
+            description: Use system config file
+      name: SC-GIT-CONFIG
+    - cmd: $0 fetch [args...]
+      options:
+        booleans:
+          - option: -q, --quiet
+            description: Suppress all output
+          - option: --tags
+            description: Fetch all tags
+          - option: -f, --force
+            description: Force overwrite of local branches
+          - option: --no-recurse-submodules
+            description: Do not fetch submodules
+          - option: --recurse-submodules
+            description: Fetch submodules recursively
+          - option: --all
+            description: Fetch all remotes
+          - option: -p, --prune
+            description: Prune remote-tracking branches no longer on the remote
+      name: SC-GIT-FETCH
+    - cmd: $0 describe
+      options:
+        booleans:
+          - option: --always
+            description: Show abbreviated commit hash if no tags
+          - option: --tags
+            description: Use any tag, even unannotated
+        strings:
+          - option: --match
+            description: Only consider tags matching the pattern
+          - option: --dirty
+            description: Describe the working tree state
+      name: SC-GIT-DESCRIBE
+    - cmd: $0 commit
+      options:
+        booleans:
+          - option: --allow-empty
+            description: Allow an empty commit
+          - option: --allow-empty-message
+            description: Allow an empty commit message
+          - option: --no-edit
+            description: Use the existing commit message
+        strings:
+          - option: -m, --message
+            description: Use the given message as the commit message
+      name: SC-GIT-COMMIT
+    - cmd: $0 cat-file <file>
+      options:
+        booleans:
+          - option: -t
+            description: Show object type
+          - option: -s
+            description: Show object size
+          - option: -e
+            description: Exit with zero status if object exists
+          - option: -p
+            description: Pretty-print object's content
+      name: SC-GIT-CAT-FILE
+    - cmd: $0 clean
+      options:
+        booleans:
+          - option: -d
+            description: Remove untracked directories
+          - option: -f, --force
+            description: Force removal of files
+          - option: -i, --interactive
+            description: Interactive cleaning
+          - option: -n, --dry-run
+            description: Show what would be done
+          - option: -q, --quiet
+            description: Suppress progress reporting
+          - option: -x
+            description: Remove ignored files
+          - option: -X
+            description: Remove only ignored files
+        arrays:
+          - option: -e, --exclude
+            description: Exclude files matching pattern
+      name: SC-GIT-CLEAN
+    - cmd: $0
+      options:
+        booleans:
+          - option: --version
+            description: Show version information
+          - option: --help
+            description: Show help information
+      name: SC-GIT

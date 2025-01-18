@@ -1,0 +1,1813 @@
+{
+    "children": [
+        {
+            "children": [
+                {
+                    "value": "centos-ssh",
+                    "children": [],
+                    "type": "DOCKER-IMAGE-NAME"
+                },
+                {
+                    "value": "jdeathe",
+                    "children": [],
+                    "type": "DOCKER-IMAGE-REPO"
+                },
+                {
+                    "value": "centos-6-1.8.1",
+                    "children": [],
+                    "type": "DOCKER-IMAGE-TAG"
+                }
+            ],
+            "type": "DOCKER-FROM"
+        },
+        {
+            "children": [
+                {
+                    "value": "DOCKERIZE_VERSION",
+                    "children": [],
+                    "type": "DOCKER-NAME"
+                },
+                {
+                    "value": "v0.3.0",
+                    "children": [],
+                    "type": "DOCKER-LITERAL"
+                }
+            ],
+            "type": "DOCKER-ENV"
+        },
+        {
+            "children": [
+                {
+                    "value": "JDK_URL",
+                    "children": [],
+                    "type": "DOCKER-NAME"
+                },
+                {
+                    "value": "http://download.oracle.com/otn-pub/java/jdk/8u181-b13/96a7b8442fe848ef90c96a2fad6ed6d1/jdk-8u181-linux-x64.rpm",
+                    "children": [],
+                    "type": "DOCKER-LITERAL"
+                }
+            ],
+            "type": "DOCKER-ENV"
+        },
+        {
+            "children": [
+                {
+                    "value": "JDK_PATH",
+                    "children": [],
+                    "type": "DOCKER-NAME"
+                },
+                {
+                    "value": "/usr/java/jdk1.8.0_181-amd64",
+                    "children": [],
+                    "type": "DOCKER-LITERAL"
+                }
+            ],
+            "type": "DOCKER-ENV"
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [],
+                                                    "type": "BASH-COMMAND-PREFIX"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "set",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-COMMAND"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "-xeu",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-ARGS"
+                                                }
+                                            ],
+                                            "type": "MAYBE-SEMANTIC-COMMAND"
+                                        }
+                                    ],
+                                    "type": "BASH-AND-MEM"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [],
+                                                    "type": "BASH-COMMAND-PREFIX"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "yum",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-COMMAND"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "install",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        },
+                                                        {
+                                                            "value": "-y",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        },
+                                                        {
+                                                            "value": "wget",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        },
+                                                        {
+                                                            "value": "python",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        },
+                                                        {
+                                                            "value": "tar",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        },
+                                                        {
+                                                            "value": "openssl",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        },
+                                                        {
+                                                            "value": "libffi",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-ARGS"
+                                                }
+                                            ],
+                                            "type": "MAYBE-SEMANTIC-COMMAND"
+                                        }
+                                    ],
+                                    "type": "BASH-AND-MEM"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [],
+                                                    "type": "BASH-COMMAND-PREFIX"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "wget",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-COMMAND"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "-nv",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        },
+                                                        {
+                                                            "value": "--header",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "value": "Cookie: oraclelicense=accept-securebackup-cookie",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                }
+                                                            ],
+                                                            "type": "BASH-DOUBLE-QUOTED"
+                                                        },
+                                                        {
+                                                            "value": "JDK_URL",
+                                                            "children": [],
+                                                            "type": "BASH-VARIABLE"
+                                                        },
+                                                        {
+                                                            "value": "-O",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        },
+                                                        {
+                                                            "value": "jdk.rpm",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-ARGS"
+                                                }
+                                            ],
+                                            "type": "MAYBE-SEMANTIC-COMMAND"
+                                        }
+                                    ],
+                                    "type": "BASH-AND-MEM"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [],
+                                                    "type": "BASH-COMMAND-PREFIX"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "rpm",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-COMMAND"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "-ivh",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        },
+                                                        {
+                                                            "value": "jdk.rpm",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-ARGS"
+                                                }
+                                            ],
+                                            "type": "MAYBE-SEMANTIC-COMMAND"
+                                        }
+                                    ],
+                                    "type": "BASH-AND-MEM"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [],
+                                                    "type": "BASH-COMMAND-PREFIX"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "rm",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-COMMAND"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "jdk.rpm",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-ARGS"
+                                                }
+                                            ],
+                                            "type": "MAYBE-SEMANTIC-COMMAND"
+                                        }
+                                    ],
+                                    "type": "BASH-AND-MEM"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [],
+                                                    "type": "BASH-COMMAND-PREFIX"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "rm",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-COMMAND"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "-r",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "value": "JDK_PATH",
+                                                                    "children": [],
+                                                                    "type": "BASH-VARIABLE"
+                                                                },
+                                                                {
+                                                                    "value": "/",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                },
+                                                                {
+                                                                    "value": "*",
+                                                                    "children": [],
+                                                                    "type": "BASH-GLOB"
+                                                                },
+                                                                {
+                                                                    "value": "src.zip",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                }
+                                                            ],
+                                                            "type": "BASH-CONCAT"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "value": "JDK_PATH",
+                                                                    "children": [],
+                                                                    "type": "BASH-VARIABLE"
+                                                                },
+                                                                {
+                                                                    "value": "/lib/missioncontrol",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                }
+                                                            ],
+                                                            "type": "BASH-CONCAT"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "value": "JDK_PATH",
+                                                                    "children": [],
+                                                                    "type": "BASH-VARIABLE"
+                                                                },
+                                                                {
+                                                                    "value": "/lib/visualvm",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                }
+                                                            ],
+                                                            "type": "BASH-CONCAT"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "value": "JDK_PATH",
+                                                                    "children": [],
+                                                                    "type": "BASH-VARIABLE"
+                                                                },
+                                                                {
+                                                                    "value": "/lib/",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                },
+                                                                {
+                                                                    "value": "*",
+                                                                    "children": [],
+                                                                    "type": "BASH-GLOB"
+                                                                },
+                                                                {
+                                                                    "value": "javafx",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                },
+                                                                {
+                                                                    "value": "*",
+                                                                    "children": [],
+                                                                    "type": "BASH-GLOB"
+                                                                }
+                                                            ],
+                                                            "type": "BASH-CONCAT"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "value": "JDK_PATH",
+                                                                    "children": [],
+                                                                    "type": "BASH-VARIABLE"
+                                                                },
+                                                                {
+                                                                    "value": "/jre/lib/plugin.jar",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                }
+                                                            ],
+                                                            "type": "BASH-CONCAT"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "value": "JDK_PATH",
+                                                                    "children": [],
+                                                                    "type": "BASH-VARIABLE"
+                                                                },
+                                                                {
+                                                                    "value": "/jre/lib/ext/jfxrt.jar",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                }
+                                                            ],
+                                                            "type": "BASH-CONCAT"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "value": "JDK_PATH",
+                                                                    "children": [],
+                                                                    "type": "BASH-VARIABLE"
+                                                                },
+                                                                {
+                                                                    "value": "/jre/bin/javaws",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                }
+                                                            ],
+                                                            "type": "BASH-CONCAT"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "value": "JDK_PATH",
+                                                                    "children": [],
+                                                                    "type": "BASH-VARIABLE"
+                                                                },
+                                                                {
+                                                                    "value": "/jre/lib/javaws.jar",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                }
+                                                            ],
+                                                            "type": "BASH-CONCAT"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "value": "JDK_PATH",
+                                                                    "children": [],
+                                                                    "type": "BASH-VARIABLE"
+                                                                },
+                                                                {
+                                                                    "value": "/jre/lib/desktop",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                }
+                                                            ],
+                                                            "type": "BASH-CONCAT"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "value": "JDK_PATH",
+                                                                    "children": [],
+                                                                    "type": "BASH-VARIABLE"
+                                                                },
+                                                                {
+                                                                    "value": "/jre/plugin",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                }
+                                                            ],
+                                                            "type": "BASH-CONCAT"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "value": "JDK_PATH",
+                                                                    "children": [],
+                                                                    "type": "BASH-VARIABLE"
+                                                                },
+                                                                {
+                                                                    "value": "/jre/lib/deploy",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                },
+                                                                {
+                                                                    "value": "*",
+                                                                    "children": [],
+                                                                    "type": "BASH-GLOB"
+                                                                }
+                                                            ],
+                                                            "type": "BASH-CONCAT"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "value": "JDK_PATH",
+                                                                    "children": [],
+                                                                    "type": "BASH-VARIABLE"
+                                                                },
+                                                                {
+                                                                    "value": "/jre/lib/",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                },
+                                                                {
+                                                                    "value": "*",
+                                                                    "children": [],
+                                                                    "type": "BASH-GLOB"
+                                                                },
+                                                                {
+                                                                    "value": "javafx",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                },
+                                                                {
+                                                                    "value": "*",
+                                                                    "children": [],
+                                                                    "type": "BASH-GLOB"
+                                                                }
+                                                            ],
+                                                            "type": "BASH-CONCAT"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "value": "JDK_PATH",
+                                                                    "children": [],
+                                                                    "type": "BASH-VARIABLE"
+                                                                },
+                                                                {
+                                                                    "value": "/jre/lib/",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                },
+                                                                {
+                                                                    "value": "*",
+                                                                    "children": [],
+                                                                    "type": "BASH-GLOB"
+                                                                },
+                                                                {
+                                                                    "value": "jfx",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                },
+                                                                {
+                                                                    "value": "*",
+                                                                    "children": [],
+                                                                    "type": "BASH-GLOB"
+                                                                }
+                                                            ],
+                                                            "type": "BASH-CONCAT"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "value": "JDK_PATH",
+                                                                    "children": [],
+                                                                    "type": "BASH-VARIABLE"
+                                                                },
+                                                                {
+                                                                    "value": "/jre/lib/amd64/libdecora_sse.so",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                }
+                                                            ],
+                                                            "type": "BASH-CONCAT"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "value": "JDK_PATH",
+                                                                    "children": [],
+                                                                    "type": "BASH-VARIABLE"
+                                                                },
+                                                                {
+                                                                    "value": "/jre/lib/amd64/libprism_",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                },
+                                                                {
+                                                                    "value": "*",
+                                                                    "children": [],
+                                                                    "type": "BASH-GLOB"
+                                                                },
+                                                                {
+                                                                    "value": ".so",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                }
+                                                            ],
+                                                            "type": "BASH-CONCAT"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "value": "JDK_PATH",
+                                                                    "children": [],
+                                                                    "type": "BASH-VARIABLE"
+                                                                },
+                                                                {
+                                                                    "value": "/jre/lib/amd64/libfxplugins.so",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                }
+                                                            ],
+                                                            "type": "BASH-CONCAT"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "value": "JDK_PATH",
+                                                                    "children": [],
+                                                                    "type": "BASH-VARIABLE"
+                                                                },
+                                                                {
+                                                                    "value": "/jre/lib/amd64/libglass.so",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                }
+                                                            ],
+                                                            "type": "BASH-CONCAT"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "value": "JDK_PATH",
+                                                                    "children": [],
+                                                                    "type": "BASH-VARIABLE"
+                                                                },
+                                                                {
+                                                                    "value": "/jre/lib/amd64/libgstreamer-lite.so",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                }
+                                                            ],
+                                                            "type": "BASH-CONCAT"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "value": "JDK_PATH",
+                                                                    "children": [],
+                                                                    "type": "BASH-VARIABLE"
+                                                                },
+                                                                {
+                                                                    "value": "/jre/lib/amd64/libjavafx",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                },
+                                                                {
+                                                                    "value": "*",
+                                                                    "children": [],
+                                                                    "type": "BASH-GLOB"
+                                                                },
+                                                                {
+                                                                    "value": ".so",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                }
+                                                            ],
+                                                            "type": "BASH-CONCAT"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "value": "JDK_PATH",
+                                                                    "children": [],
+                                                                    "type": "BASH-VARIABLE"
+                                                                },
+                                                                {
+                                                                    "value": "/jre/lib/amd64/libjfx",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                },
+                                                                {
+                                                                    "value": "*",
+                                                                    "children": [],
+                                                                    "type": "BASH-GLOB"
+                                                                },
+                                                                {
+                                                                    "value": ".so",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                }
+                                                            ],
+                                                            "type": "BASH-CONCAT"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-ARGS"
+                                                }
+                                            ],
+                                            "type": "MAYBE-SEMANTIC-COMMAND"
+                                        }
+                                    ],
+                                    "type": "BASH-AND-MEM"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [],
+                                                    "type": "BASH-COMMAND-PREFIX"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "wget",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-COMMAND"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "-nv",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "value": "https://github.com/jwilder/dockerize/releases/download/",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                },
+                                                                {
+                                                                    "value": "DOCKERIZE_VERSION",
+                                                                    "children": [],
+                                                                    "type": "BASH-VARIABLE"
+                                                                },
+                                                                {
+                                                                    "value": "/dockerize-linux-amd64-",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                },
+                                                                {
+                                                                    "value": "DOCKERIZE_VERSION",
+                                                                    "children": [],
+                                                                    "type": "BASH-VARIABLE"
+                                                                },
+                                                                {
+                                                                    "value": ".tar.gz",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                }
+                                                            ],
+                                                            "type": "BASH-CONCAT"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-ARGS"
+                                                }
+                                            ],
+                                            "type": "MAYBE-SEMANTIC-COMMAND"
+                                        }
+                                    ],
+                                    "type": "BASH-AND-MEM"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [],
+                                                    "type": "BASH-COMMAND-PREFIX"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "tar",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-COMMAND"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "-C",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        },
+                                                        {
+                                                            "value": "/usr/local/bin",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        },
+                                                        {
+                                                            "value": "-xzvf",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "value": "dockerize-linux-amd64-",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                },
+                                                                {
+                                                                    "value": "DOCKERIZE_VERSION",
+                                                                    "children": [],
+                                                                    "type": "BASH-VARIABLE"
+                                                                },
+                                                                {
+                                                                    "value": ".tar.gz",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                }
+                                                            ],
+                                                            "type": "BASH-CONCAT"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-ARGS"
+                                                }
+                                            ],
+                                            "type": "MAYBE-SEMANTIC-COMMAND"
+                                        }
+                                    ],
+                                    "type": "BASH-AND-MEM"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [],
+                                                    "type": "BASH-COMMAND-PREFIX"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "rm",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-COMMAND"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "value": "dockerize-linux-amd64-",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                },
+                                                                {
+                                                                    "value": "DOCKERIZE_VERSION",
+                                                                    "children": [],
+                                                                    "type": "BASH-VARIABLE"
+                                                                },
+                                                                {
+                                                                    "value": ".tar.gz",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                }
+                                                            ],
+                                                            "type": "BASH-CONCAT"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-ARGS"
+                                                }
+                                            ],
+                                            "type": "MAYBE-SEMANTIC-COMMAND"
+                                        }
+                                    ],
+                                    "type": "BASH-AND-MEM"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [],
+                                                    "type": "BASH-COMMAND-PREFIX"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "yum",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-COMMAND"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "-y",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        },
+                                                        {
+                                                            "value": "clean",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        },
+                                                        {
+                                                            "value": "all",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-ARGS"
+                                                }
+                                            ],
+                                            "type": "MAYBE-SEMANTIC-COMMAND"
+                                        }
+                                    ],
+                                    "type": "BASH-AND-MEM"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [],
+                                                    "type": "BASH-COMMAND-PREFIX"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "rm",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-COMMAND"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "-rf",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "value": "/tmp/",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                },
+                                                                {
+                                                                    "value": "*",
+                                                                    "children": [],
+                                                                    "type": "BASH-GLOB"
+                                                                }
+                                                            ],
+                                                            "type": "BASH-CONCAT"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "value": "/var/tmp/",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                },
+                                                                {
+                                                                    "value": "*",
+                                                                    "children": [],
+                                                                    "type": "BASH-GLOB"
+                                                                }
+                                                            ],
+                                                            "type": "BASH-CONCAT"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-ARGS"
+                                                }
+                                            ],
+                                            "type": "MAYBE-SEMANTIC-COMMAND"
+                                        }
+                                    ],
+                                    "type": "BASH-AND-MEM"
+                                }
+                            ],
+                            "type": "BASH-AND-IF"
+                        }
+                    ],
+                    "type": "BASH-SCRIPT"
+                }
+            ],
+            "type": "DOCKER-RUN"
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "value": "/etc/services-config/ssh/id_rsa",
+                            "children": [],
+                            "type": "DOCKER-PATH"
+                        }
+                    ],
+                    "type": "DOCKER-COPY-TARGET"
+                },
+                {
+                    "children": [
+                        {
+                            "value": "vagrant_insecure_rsa",
+                            "children": [],
+                            "type": "DOCKER-PATH"
+                        }
+                    ],
+                    "type": "DOCKER-COPY-SOURCE"
+                }
+            ],
+            "type": "DOCKER-COPY"
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [],
+                                                    "type": "BASH-COMMAND-PREFIX"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "printf",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-COMMAND"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "children": [
+                                                                        {
+                                                                            "value": "cp -f /etc/services-config/ssh/id_rsa ${OPTS_SSH_USER_HOME}/.ssh/id_rsa\\n             chown -R ${OPTS_SSH_USER}:",
+                                                                            "children": [],
+                                                                            "type": "BASH-LITERAL"
+                                                                        },
+                                                                        {
+                                                                            "value": "OPTS_SSH_USER",
+                                                                            "children": [],
+                                                                            "type": "BASH-VARIABLE"
+                                                                        },
+                                                                        {
+                                                                            "value": " ${OPTS_SSH_USER_HOME}/.ssh/id_rsa\\n             chmod 600 ${OPTS_SSH_USER_HOME}/.ssh/id_rsa\\n             cp -r ${OPTS_SSH_USER_HOME}/.ssh /root/.ssh\\n\\n             useradd -ms /bin/bash testuser\\n             echo ",
+                                                                            "children": [],
+                                                                            "type": "BASH-LITERAL"
+                                                                        }
+                                                                    ],
+                                                                    "type": "BASH-DOUBLE-QUOTED"
+                                                                },
+                                                                {
+                                                                    "value": "testuser:testpass",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                },
+                                                                {
+                                                                    "children": [
+                                                                        {
+                                                                            "value": " | chpasswd",
+                                                                            "children": [],
+                                                                            "type": "BASH-LITERAL"
+                                                                        }
+                                                                    ],
+                                                                    "type": "BASH-DOUBLE-QUOTED"
+                                                                }
+                                                            ],
+                                                            "type": "BASH-CONCAT"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-ARGS"
+                                                }
+                                            ],
+                                            "type": "MAYBE-SEMANTIC-COMMAND"
+                                        }
+                                    ],
+                                    "type": "BASH-REDIRECT-COMMAND"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "/usr/sbin/bootstrap-extra",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-PATH"
+                                                }
+                                            ],
+                                            "type": "BASH-REDIRECT-OVERWRITE"
+                                        }
+                                    ],
+                                    "type": "BASH-REDIRECT-REDIRECTS"
+                                }
+                            ],
+                            "type": "BASH-REDIRECT"
+                        }
+                    ],
+                    "type": "BASH-SCRIPT"
+                }
+            ],
+            "type": "DOCKER-RUN"
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "children": [],
+                                                                    "type": "BASH-COMMAND-PREFIX"
+                                                                },
+                                                                {
+                                                                    "children": [
+                                                                        {
+                                                                            "value": "awk",
+                                                                            "children": [],
+                                                                            "type": "BASH-LITERAL"
+                                                                        }
+                                                                    ],
+                                                                    "type": "BASH-COMMAND-COMMAND"
+                                                                },
+                                                                {
+                                                                    "children": [
+                                                                        {
+                                                                            "value": "-v",
+                                                                            "children": [],
+                                                                            "type": "BASH-LITERAL"
+                                                                        },
+                                                                        {
+                                                                            "children": [
+                                                                                {
+                                                                                    "value": "file=",
+                                                                                    "children": [],
+                                                                                    "type": "BASH-LITERAL"
+                                                                                },
+                                                                                {
+                                                                                    "children": [
+                                                                                        {
+                                                                                            "value": "/usr/sbin/bootstrap-extra",
+                                                                                            "children": [],
+                                                                                            "type": "BASH-LITERAL"
+                                                                                        }
+                                                                                    ],
+                                                                                    "type": "BASH-DOUBLE-QUOTED"
+                                                                                }
+                                                                            ],
+                                                                            "type": "BASH-CONCAT"
+                                                                        },
+                                                                        {
+                                                                            "value": "-v",
+                                                                            "children": [],
+                                                                            "type": "BASH-LITERAL"
+                                                                        },
+                                                                        {
+                                                                            "children": [
+                                                                                {
+                                                                                    "value": "lineno=",
+                                                                                    "children": [],
+                                                                                    "type": "BASH-LITERAL"
+                                                                                },
+                                                                                {
+                                                                                    "children": {
+                                                                                        "children": [
+                                                                                            {
+                                                                                                "children": [
+                                                                                                    {
+                                                                                                        "children": [
+                                                                                                            {
+                                                                                                                "value": "-",
+                                                                                                                "children": [],
+                                                                                                                "type": "BASH-OP"
+                                                                                                            }
+                                                                                                        ],
+                                                                                                        "type": "BASH-ARITHMETIC-BINARY-OP"
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "children": [
+                                                                                                            {
+                                                                                                                "children": [
+                                                                                                                    {
+                                                                                                                        "children": [
+                                                                                                                            {
+                                                                                                                                "children": [
+                                                                                                                                    {
+                                                                                                                                        "children": [
+                                                                                                                                            {
+                                                                                                                                                "children": [
+                                                                                                                                                    {
+                                                                                                                                                        "children": [],
+                                                                                                                                                        "type": "BASH-COMMAND-PREFIX"
+                                                                                                                                                    },
+                                                                                                                                                    {
+                                                                                                                                                        "children": [
+                                                                                                                                                            {
+                                                                                                                                                                "value": "wc",
+                                                                                                                                                                "children": [],
+                                                                                                                                                                "type": "BASH-LITERAL"
+                                                                                                                                                            }
+                                                                                                                                                        ],
+                                                                                                                                                        "type": "BASH-COMMAND-COMMAND"
+                                                                                                                                                    },
+                                                                                                                                                    {
+                                                                                                                                                        "children": [
+                                                                                                                                                            {
+                                                                                                                                                                "value": "-l",
+                                                                                                                                                                "children": [],
+                                                                                                                                                                "type": "BASH-LITERAL"
+                                                                                                                                                            }
+                                                                                                                                                        ],
+                                                                                                                                                        "type": "BASH-COMMAND-ARGS"
+                                                                                                                                                    }
+                                                                                                                                                ],
+                                                                                                                                                "type": "MAYBE-SEMANTIC-COMMAND"
+                                                                                                                                            }
+                                                                                                                                        ],
+                                                                                                                                        "type": "BASH-REDIRECT-COMMAND"
+                                                                                                                                    },
+                                                                                                                                    {
+                                                                                                                                        "children": [
+                                                                                                                                            {
+                                                                                                                                                "children": [
+                                                                                                                                                    {
+                                                                                                                                                        "children": [
+                                                                                                                                                            {
+                                                                                                                                                                "value": "/usr/sbin/sshd-bootstrap",
+                                                                                                                                                                "children": [],
+                                                                                                                                                                "type": "BASH-LITERAL"
+                                                                                                                                                            }
+                                                                                                                                                        ],
+                                                                                                                                                        "type": "BASH-PATH"
+                                                                                                                                                    }
+                                                                                                                                                ],
+                                                                                                                                                "type": "BASH-REDIRECT-STDIN"
+                                                                                                                                            }
+                                                                                                                                        ],
+                                                                                                                                        "type": "BASH-REDIRECT-REDIRECTS"
+                                                                                                                                    }
+                                                                                                                                ],
+                                                                                                                                "type": "BASH-REDIRECT"
+                                                                                                                            }
+                                                                                                                        ],
+                                                                                                                        "type": "BASH-DOLLAR-PARENS"
+                                                                                                                    }
+                                                                                                                ],
+                                                                                                                "type": "BASH-ARITHMETIC-EXPANSION"
+                                                                                                            }
+                                                                                                        ],
+                                                                                                        "type": "BASH-ARITHMETIC-BINARY-LHS"
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "children": [
+                                                                                                            {
+                                                                                                                "children": [
+                                                                                                                    {
+                                                                                                                        "value": "4",
+                                                                                                                        "children": [],
+                                                                                                                        "type": "BASH-LITERAL"
+                                                                                                                    }
+                                                                                                                ],
+                                                                                                                "type": "BASH-ARITHMETIC-EXPANSION"
+                                                                                                            }
+                                                                                                        ],
+                                                                                                        "type": "BASH-ARITHEMTIC-BINARY-RHS"
+                                                                                                    }
+                                                                                                ],
+                                                                                                "type": "BASH-ARITHMETIC-BINARY"
+                                                                                            }
+                                                                                        ],
+                                                                                        "type": "BASH-ARITHMETIC-SEQUENCE"
+                                                                                    },
+                                                                                    "type": "BASH-DOLLAR-ARITHMETIC"
+                                                                                }
+                                                                            ],
+                                                                            "type": "BASH-CONCAT"
+                                                                        },
+                                                                        {
+                                                                            "value": "     NR==lineno {system(\"echo \"\"; cat \" file); print; next}     1",
+                                                                            "children": [],
+                                                                            "type": "BASH-SINGLE-QUOTED"
+                                                                        },
+                                                                        {
+                                                                            "value": "/usr/sbin/sshd-bootstrap",
+                                                                            "children": [],
+                                                                            "type": "BASH-LITERAL"
+                                                                        }
+                                                                    ],
+                                                                    "type": "BASH-COMMAND-ARGS"
+                                                                }
+                                                            ],
+                                                            "type": "MAYBE-SEMANTIC-COMMAND"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-REDIRECT-COMMAND"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "children": [
+                                                                        {
+                                                                            "value": "/usr/sbin/sshd-bootstrap2",
+                                                                            "children": [],
+                                                                            "type": "BASH-LITERAL"
+                                                                        }
+                                                                    ],
+                                                                    "type": "BASH-PATH"
+                                                                }
+                                                            ],
+                                                            "type": "BASH-REDIRECT-OVERWRITE"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-REDIRECT-REDIRECTS"
+                                                }
+                                            ],
+                                            "type": "BASH-REDIRECT"
+                                        }
+                                    ],
+                                    "type": "BASH-AND-MEM"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [],
+                                                    "type": "BASH-COMMAND-PREFIX"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "mv",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-COMMAND"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "/usr/sbin/sshd-bootstrap2",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        },
+                                                        {
+                                                            "value": "/usr/sbin/sshd-bootstrap",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-ARGS"
+                                                }
+                                            ],
+                                            "type": "MAYBE-SEMANTIC-COMMAND"
+                                        }
+                                    ],
+                                    "type": "BASH-AND-MEM"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [],
+                                                    "type": "BASH-COMMAND-PREFIX"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "chmod",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-COMMAND"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "value": "+",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                },
+                                                                {
+                                                                    "value": "x",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                }
+                                                            ],
+                                                            "type": "BASH-CONCAT"
+                                                        },
+                                                        {
+                                                            "value": "/usr/sbin/sshd-bootstrap",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-ARGS"
+                                                }
+                                            ],
+                                            "type": "MAYBE-SEMANTIC-COMMAND"
+                                        }
+                                    ],
+                                    "type": "BASH-AND-MEM"
+                                }
+                            ],
+                            "type": "BASH-AND-IF"
+                        }
+                    ],
+                    "type": "BASH-SCRIPT"
+                }
+            ],
+            "type": "DOCKER-RUN"
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "children": [],
+                                    "type": "BASH-COMMAND-PREFIX"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "value": "sed",
+                                            "children": [],
+                                            "type": "BASH-LITERAL"
+                                        }
+                                    ],
+                                    "type": "BASH-COMMAND-COMMAND"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "value": "-i",
+                                            "children": [],
+                                            "type": "BASH-LITERAL"
+                                        },
+                                        {
+                                            "value": "-e",
+                                            "children": [],
+                                            "type": "BASH-LITERAL"
+                                        },
+                                        {
+                                            "value": "s/^PermitRootLogin no/PermitRootLogin without-password/g",
+                                            "children": [],
+                                            "type": "BASH-SINGLE-QUOTED"
+                                        },
+                                        {
+                                            "value": "-e",
+                                            "children": [],
+                                            "type": "BASH-LITERAL"
+                                        },
+                                        {
+                                            "value": "s/^PasswordAuthentication no/PasswordAuthentication yes/g",
+                                            "children": [],
+                                            "type": "BASH-SINGLE-QUOTED"
+                                        },
+                                        {
+                                            "value": "/etc/services-config/ssh/sshd_config",
+                                            "children": [],
+                                            "type": "BASH-LITERAL"
+                                        }
+                                    ],
+                                    "type": "BASH-COMMAND-ARGS"
+                                }
+                            ],
+                            "type": "MAYBE-SEMANTIC-COMMAND"
+                        }
+                    ],
+                    "type": "BASH-SCRIPT"
+                }
+            ],
+            "type": "DOCKER-RUN"
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [],
+                                                    "type": "BASH-COMMAND-PREFIX"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "printf",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-COMMAND"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "value": "\\nSSH_USER_PASSWORD=password",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                }
+                                                            ],
+                                                            "type": "BASH-DOUBLE-QUOTED"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-ARGS"
+                                                }
+                                            ],
+                                            "type": "MAYBE-SEMANTIC-COMMAND"
+                                        }
+                                    ],
+                                    "type": "BASH-REDIRECT-COMMAND"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "/etc/services-config/ssh/sshd-bootstrap.conf",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-PATH"
+                                                }
+                                            ],
+                                            "type": "BASH-REDIRECT-APPEND"
+                                        }
+                                    ],
+                                    "type": "BASH-REDIRECT-REDIRECTS"
+                                }
+                            ],
+                            "type": "BASH-REDIRECT"
+                        }
+                    ],
+                    "type": "BASH-SCRIPT"
+                }
+            ],
+            "type": "DOCKER-RUN"
+        },
+        {
+            "children": [
+                {
+                    "value": "22",
+                    "children": [],
+                    "type": "DOCKER-PORT"
+                }
+            ],
+            "type": "DOCKER-EXPOSE"
+        },
+        {
+            "children": [
+                {
+                    "value": "JAVA_HOME",
+                    "children": [],
+                    "type": "DOCKER-NAME"
+                },
+                {
+                    "value": "$JDK_PATH/jre/",
+                    "children": [],
+                    "type": "DOCKER-LITERAL"
+                }
+            ],
+            "type": "DOCKER-ENV"
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [],
+                                                    "type": "BASH-COMMAND-PREFIX"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "yum",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-COMMAND"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "-y",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        },
+                                                        {
+                                                            "value": "remove",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        },
+                                                        {
+                                                            "value": "wget",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-ARGS"
+                                                }
+                                            ],
+                                            "type": "MAYBE-SEMANTIC-COMMAND"
+                                        }
+                                    ],
+                                    "type": "BASH-AND-MEM"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [],
+                                                    "type": "BASH-COMMAND-PREFIX"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "yum",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-COMMAND"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "-y",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        },
+                                                        {
+                                                            "value": "clean",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        },
+                                                        {
+                                                            "value": "all",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-ARGS"
+                                                }
+                                            ],
+                                            "type": "MAYBE-SEMANTIC-COMMAND"
+                                        }
+                                    ],
+                                    "type": "BASH-AND-MEM"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [],
+                                                    "type": "BASH-COMMAND-PREFIX"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "rm",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-COMMAND"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "value": "-rf",
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "value": "/tmp/",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                },
+                                                                {
+                                                                    "value": "*",
+                                                                    "children": [],
+                                                                    "type": "BASH-GLOB"
+                                                                }
+                                                            ],
+                                                            "type": "BASH-CONCAT"
+                                                        },
+                                                        {
+                                                            "children": [
+                                                                {
+                                                                    "value": "/var/tmp/",
+                                                                    "children": [],
+                                                                    "type": "BASH-LITERAL"
+                                                                },
+                                                                {
+                                                                    "value": "*",
+                                                                    "children": [],
+                                                                    "type": "BASH-GLOB"
+                                                                }
+                                                            ],
+                                                            "type": "BASH-CONCAT"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-COMMAND-ARGS"
+                                                }
+                                            ],
+                                            "type": "MAYBE-SEMANTIC-COMMAND"
+                                        }
+                                    ],
+                                    "type": "BASH-AND-MEM"
+                                }
+                            ],
+                            "type": "BASH-AND-IF"
+                        }
+                    ],
+                    "type": "BASH-SCRIPT"
+                }
+            ],
+            "type": "DOCKER-RUN"
+        }
+    ],
+    "file_sha": "023b9a07f0ef13ae4128449c950c856c2ed5d71c",
+    "type": "DOCKER-FILE"
+}

@@ -1,0 +1,45 @@
+command:
+  providerFor:
+    - wget
+  prefix: SC-WGET
+  options: &options
+    booleans:
+      - option: -d, --debug
+        description: Print lots of debugging information
+      - option: -q, --quiet
+        description: Quiet (no output)
+      - option: -v, --verbose
+        description: Be verbose (this is the default)
+      - option: --no-verbose
+        description: Turn off verbose without being quiet
+      - option: --span-hosts
+        description: Go to foreign hosts when recursive
+      - option: --no-check-certificate
+        description: Don't validate the server's certificate
+      - option: -N, --timestamping
+        description: Don't re-retrieve files unless newer than local
+      - option: -c, --continue
+        description: Resume getting a partially-downloaded file
+      - option: --nc, --no-clobber
+        description: Skip downloads that would download to existing files
+      - option: --nv, --no-verbose
+        description: Turn off verbose without being quiet
+      - option: --content-disposition
+        description: Honor the Content-Disposition header when choosing local file names
+    strings:
+      - option: --progress
+        description: Select the type of the progress indicator
+      - option: -U, --user-agent
+        description: Identify as agent-string to the HTTP server
+    paths:
+      - option: -O, --output-document
+        description: Write documents to FILE
+      - option: -a, --append-output
+        description: Append to FILE instead of overwriting
+      - option: -o, --output-file
+        description: Log messages to FILE
+  scenarios:
+    - cmd: $0 <url>
+      options: *options
+      name: SC-WGET
+      fixBadLongNames: [ '-nc', '-nv' ]

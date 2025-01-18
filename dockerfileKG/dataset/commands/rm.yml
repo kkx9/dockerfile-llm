@@ -1,0 +1,34 @@
+command:
+  providerFor:
+    - rm
+  prefix: SC-RM
+  scenarios:
+    - cmd: $0 [paths...]
+      options:
+        booleans:
+          - option: -r, --recursive
+            description: Remove directories and their contents recursively
+          - option: -R, --recursive
+            description: Remove directories and their contents recursively
+          - option: -f, --force
+            description: Ignore nonexistent files and arguments, never prompt
+          - option: -i
+            description: Prompt before every removal
+          - option: -I
+            description: Prompt once before removing more than three files, or when removing recursively
+          - option: --one-file-system
+            description: Stay on this file system
+          - option: -v, --verbose
+            description: Explain what is being done
+          - option: --version
+            description: Output version information and exit
+          - option: --help
+            description: Display this help and exit
+          - option: --preserve-root
+            description: Do not remove '/' (default)
+          - option: --no-preserve-root
+            description: Do not treat '/' specially
+        strings:
+          - option: --interactive
+            description: Prompt according to WHEN: never, once (-I), or always (-i)
+      name: SC-RM

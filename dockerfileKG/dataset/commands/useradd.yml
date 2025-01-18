@@ -1,0 +1,98 @@
+command:
+  providerFor:
+    - useradd
+  prefix: SC-USER-ADD
+  options: &options
+    booleans:
+      - option: -D, --defaults
+        description: Use default settings
+      - option: -h, --help
+        description: Display help message
+      - option: -l, --no-log-init
+        description: Do not add the user to the lastlog and faillog databases
+      - option: -m, --create-home
+        description: Create the user's home directory
+      - option: -M, --no-create-home
+        description: Do not create the user's home directory
+      - option: -N, --no-user-group
+        description: Do not create a group with the same name as the user
+      - option: -o, --non-unique
+        description: Allow creating a user with a duplicate (non-unique) UID
+      - option: -r, --system
+        description: Create a system account
+      - option: -U, --user-group
+        description: Create a group with the same name as the user
+    strings:
+      - option: -c, --comment
+        description: Add a comment for the user
+      - option: -e, --expiredate
+        description: Set the account expiration date
+      - option: -f, --inactive
+        description: Set the number of days after a password expires until the account is permanently disabled
+      - option: -g, --gid
+        description: Set the user's primary group ID
+      - option: -p, --password
+        description: Set the user's password
+      - option: -s, --shell
+        description: Set the user's login shell
+      - option: -u, --uid
+        description: Set the user's user ID
+      - option: -Z, --selinux-user
+        description: Set the SELinux user for the user's login
+    paths:
+      - option: -b, --base-dir
+        description: Set the base directory for the user's home directory
+      - option: -d, --home-dir
+        description: Set the user's home directory
+      - option: -k, --skel
+        description: Specify an alternative skeleton directory
+      - option: -R, --root
+        description: Apply changes in the CHROOT_DIR directory and use the configuration files from the CHROOT_DIR directory
+    arrays:
+      - option: -k, --key
+        description: Add a key to the user's authorized keys
+  optionsA: &optionsA
+    arrays:
+      - option: -G, --groups
+        description: Add the user to supplementary groups
+  optionsB: &optionsB
+    strings:
+      - option: -G, --groups
+        description: Add the user to supplementary groups
+  scenarios:
+    - cmd: $0 [login]
+      options:
+        merge: [ *options, *optionsA ]
+      mustHave:
+        - -D
+      name: SC-USER-ADD
+    - cmd: $0 [login]
+      options:
+        merge: [ *options, *optionsA ]
+      mustHave:
+        - --defaults
+      name: SC-USER-ADD
+    - cmd: $0 <login>
+      options:
+        merge: [ *options, *optionsA ]
+      name: SC-USER-ADD
+    - cmd: $0 [login]
+      options:
+        merge: [ *options, *optionsB ]
+      mustHave:
+        - -G
+        - -D
+      name: SC-USER-ADD
+    - cmd: $0 [login]
+      options:
+        merge: [ *options, *optionsB ]
+      mustHave:
+        - -G
+        - --defaults
+      name: SC-USER-ADD
+    - cmd: $0 <login>
+      options:
+        merge: [ *options, *optionsB ]
+      mustHave:
+        - -G
+      name: SC-USER-ADD

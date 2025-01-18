@@ -1,0 +1,57 @@
+command:
+  providerFor:
+    - unzip
+  prefix: SC-UNZIP
+  options: &options
+    booleans:
+      - option: -p
+        description: Extract files to pipe
+      - option: -f
+        description: Freshen existing files
+      - option: -u
+        description: Update existing files
+      - option: -v
+        description: Verbose mode
+      - option: -l
+        description: List archive files
+      - option: -t
+        description: Test archive files
+      - option: -z
+        description: Display archive comment
+      - option: -T
+        description: Timestamp archive
+      - option: -n
+        description: Never overwrite existing files
+      - option: -o
+        description: Overwrite existing files
+      - option: -j
+        description: Junk paths
+      - option: -C
+        description: Change to directory
+      - option: -X
+        description: Restore UID/GID
+      - option: -K
+        description: Keep setuid/setgid/tacky permissions
+      - option: -L
+        description: Convert LF to CR LF
+      - option: -V
+        description: Retain VMS version numbers
+      - option: -M
+        description: Pipe through more
+    paths:
+      - option: -d
+        description: Extract files into directory
+    arrays:
+      - option: -x
+        description: Exclude files
+    counts:
+      - option: -q
+        description: Quiet mode
+      - option: -a
+        description: Convert text files
+      - option: -U
+        description: Use escapes for all non-ASCII characters
+  scenarios:
+    - cmd: $0 <file> [items...]
+      options: *options
+      name: SC-UNZIP

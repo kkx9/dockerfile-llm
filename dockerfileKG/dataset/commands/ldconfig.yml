@@ -1,0 +1,39 @@
+command:
+  providerFor:
+    - ldconfig
+  prefix: SC-LDCONFIG
+  scenarios:
+    - cmd: $0
+      options:
+        booleans:
+          - option: -i, --ingore-aux-cache
+            description: Ignore auxiliary cache
+          - option: -l
+            description: Do not update links
+          - option: -n
+            description: Only process directories specified on the command line
+          - option: -N
+            description: Don't rebuild the cache
+          - option: -p, --print-cache
+            description: Print the cache
+          - option: -v, --verbose
+            description: Verbose mode
+          - option: -X
+            description: Don't update the cache
+          - option: -?, --help
+            description: Display help information
+          - option: -?, --usage
+            description: Display usage information
+          - option: -V, --version
+            description: Display version information
+        strings:
+          - option: -c, --format
+            description: Format of the output
+        paths:
+          - option: -r
+            description: Directory to process
+          - option: -C
+            description: Configuration file
+          - option: -f
+            description: File to process
+      name: SC-LDCONFIG

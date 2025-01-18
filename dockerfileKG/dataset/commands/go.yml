@@ -1,0 +1,179 @@
+command:
+  providerFor:
+    - go
+  prefix: SC-GO
+  fixThese: &fixThese
+    - -race
+    - -msan
+    - -work
+    - -asmflags
+    - -buildmode
+    - -compiler
+    - -gccgoflags
+    - -gcflags
+    - -installsuffix
+    - -ldflags
+    - -mod
+    - -pkgdir
+    - -tags
+    - -toolexec
+    - -fix
+    - -insecure
+    - -json
+    - -exec
+    - -all
+    - -args
+    - -cache
+  optionsBuild: &optionsBuild
+    booleans:
+      - option: -i
+        description: Install the packages that are dependencies of the target
+      - option: -a
+        description: Force rebuilding of packages that are already up-to-date
+      - option: -n
+        description: Print the commands but do not run them
+      - option: --race
+        description: Enable data race detection
+      - option: --msan
+        description: Enable memory sanitizer
+      - option: -v
+        description: Print the names of packages as they are compiled
+      - option: --work
+        description: Print the name of the temporary work directory and do not delete it when exiting
+      - option: -x
+        description: Print the commands
+      - option: --linkshared
+        description: Link against shared libraries previously created with -buildmode=shared
+      - option: -c
+        description: Disable printing of the final binary's path
+    strings:
+      - option: --asmflags
+        description: Arguments to pass on each go tool asm invocation
+      - option: --buildmode
+        description: Build mode to use
+      - option: --compiler
+        description: Name of compiler to use
+      - option: --gccgoflags
+        description: Arguments to pass on each gccgo compiler/linker invocation
+      - option: --gcflags
+        description: Arguments to pass on each go tool compile invocation
+      - option: --installsuffix
+        description: A suffix to use in the name of the package installation directory
+      - option: --ldflags
+        description: Arguments to pass on each go tool link invocation
+      - option: --mod
+        description: Module download mode to use
+      - option: --pkgdir
+        description: Install and load all packages from dir instead of the usual locations
+      - option: --tags
+        description: A comma-separated list of build tags to consider satisfied during the build
+      - option: --toolexec
+        description: A program to use to invoke toolchain programs like vet and asm
+      - option: --exec
+        description: A program to use to invoke the go command
+    paths:
+      - option: -o
+        description: Write the resulting executable or object to the named output file
+  optionsGet: &optionsGet
+    booleans:
+      - option: -d
+        description: Only download the packages, do not install them
+      - option: -f
+        description: Download and install packages even if they are already installed
+      - option: -t
+        description: Also download the packages required to build the tests
+      - option: -u
+        description: Update the named packages and their dependencies
+      - option: -v
+        description: Print the names of packages as they are downloaded
+      - option: --fix
+        description: Apply all known fixes to the packages
+      - option: --insecure
+        description: Permit fetching from insecure sources
+  scenarios:
+    - cmd: $0 get [packages...]
+      options:
+        merge: [ *optionsBuild, *optionsGet ]
+      name: SC-GO-GET
+      fixBadLongNames: *fixThese
+      fixupNonSpacedArgs: true
+    - cmd: $0 vet
+      options:
+        booleans:
+          - option: --all
+            description: Enable all checks
+      name: SC-GO-VET
+      fixBadLongNames: *fixThese
+      fixupNonSpacedArgs: true
+    - cmd: $0 fmt
+      options:
+        booleans:
+          - option: -n
+            description: Print the commands but do not run them
+          - option: -x
+            description: Print the commands
+      name: SC-GO-FMT
+      fixBadLongNames: *fixThese
+      fixupNonSpacedArgs: true
+    - cmd: $0 version
+      options: {}
+      name: SC-GO-VERSION
+      fixBadLongNames: *fixThese
+      fixupNonSpacedArgs: true
+    - cmd: $0 install [packages...]
+      options: *optionsBuild
+      name: SC-GO-INSTALL
+      fixBadLongNames: *fixThese
+      fixupNonSpacedArgs: true
+    - cmd: $0 test [packages...]
+      options: *optionsBuild
+      name: SC-GO-TEST
+      fixBadLongNames: *fixThese
+      fixupNonSpacedArgs: true
+      captureAllAfter:
+        match: [ '--args' ]
+        name: args
+    - cmd: $0 clean
+      options:
+        booleans:
+          - option: --cache
+            description: Remove the entire go build cache
+      name: SC-GO-CLEAN
+      fixBadLongNames: *fixThese
+      fixupNonSpacedArgs: true
+    - cmd: $0 build [packages...]
+      options: *optionsBuild
+      name: SC-GO-BUILD
+      fixBadLongNames: *fixThese
+      fixupNonSpacedArgs: true
+    - cmd: $0 mod [arg]
+      options: {}
+      name: SC-GO-MOD
+      fixBadLongNames: *fixThese
+      fixupNonSpacedArgs: true
+    - cmd: $0 env [arg]
+      options:
+        booleans:
+          - option: --json
+            description: Print the environment in JSON format
+      name: SC-GO-ENV
+      fixBadLongNames: *fixThese
+      fixupNonSpacedArgs: true
+    - cmd: $0 generate [path]
+      options:
+        booleans:
+          - option: -n
+            description: Print the commands but do not run them
+          - option: -v
+            description: Print the names of packages as they are compiled
+          - option: -x
+            description: Print the commands
+      name: SC-GO-GENERATE
+      fixBadLongNames: *fixThese
+      fixupNonSpacedArgs: true
+    - cmd: $0 list [path]
+      options: {}
+      name: SC-GO-LIST
+      fixBadLongNames: *fixThese
+      fixupNonSpacedArgs: true
+      

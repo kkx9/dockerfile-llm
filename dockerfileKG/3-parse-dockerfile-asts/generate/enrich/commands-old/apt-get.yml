@@ -1,0 +1,138 @@
+command:
+  prefix: SC-APT-GET
+  providerFor:
+    - apt-get
+  optionsAll: &optionsAll
+    booleans:
+      - option: -y, --yes
+        description: Assume yes to all prompts
+      - option: -f, --fix-broken
+        description: Fix broken dependencies
+      - option: -m, --ignore-missing
+        description: Ignore missing packages
+      - option: --fix-missing
+        description: Fix missing packages
+      - option: --allow-unauthenticated
+        description: Allow unauthenticated packages
+      - option: --allow-downgrades
+        description: Allow downgrading packages
+      - option: --allow-remove-essential
+        description: Allow removal of essential packages
+      - option: --allow-change-held-packages
+        description: Allow changing held packages
+      - option: -s, --simulate
+        description: Simulate actions without performing them
+      - option: -u, --show-upgraded
+        description: Show upgraded packages
+      - option: --no-install-recommends
+        description: Do not install recommended packages
+      - option: -h, --help
+        description: Show help message
+      - option: -v, --version
+        description: Show version information
+      - option: --purge
+        description: Purge configuration files
+      - option: --auto-remove
+        description: Automatically remove packages
+      - option: --autoremove
+        description: Automatically remove packages
+      - option: --force-yes
+        description: Force yes to all prompts
+    paths:
+      - option: -C, --config
+        description: Specify configuration file
+    counts:
+      - option: -q, --quiet
+        description: Quiet mode
+    arrays:
+      - option: -o, --option
+        description: Set an option
+  optionsInstall: &optionsInstall
+    booleans:
+      - option: -d, --download-only
+        description: Only download packages
+      - option: --no-download
+        description: Do not download packages
+      - option: --upgrade
+        description: Upgrade packages
+      - option: --only-upgrade
+        description: Only upgrade packages
+      - option: --just-print
+        description: Just print actions without performing them
+      - option: --dry-run
+        description: Alias for --just-print
+      - option: --recon
+        description: Alias for --just-print
+      - option: --no-act
+        description: Alias for --just-print
+      - option: --assume-yes
+        description: Assume yes to all prompts
+      - option: -u, --show-upgraded
+        description: Show upgraded packages
+      - option: -V, --verbose-version
+        description: Show verbose version information
+      - option: -b, --compile
+        description: Compile source packages
+      - option: --build
+        description: Build source packages
+      - option: --ignore-hold
+        description: Ignore held packages
+      - option: --no-upgrade
+        description: Do not upgrade packages
+      - option: --no-install-suggests
+        description: Do not install suggested packages
+      - option: --install-suggests
+        description: Install suggested packages
+      - option: --print-uris
+        description: Print URIs of packages
+      - option: --reinstall
+        description: Reinstall packages
+      - option: --list-cleanup
+        description: Perform list cleanup
+      - option: --trivial-only
+        description: Only perform trivial actions
+      - option: --no-remove
+        description: Do not remove packages
+      - option: --only-source
+        description: Only fetch source packages
+  scenarios:
+    - cmd: $0 install [packages...]
+      options:
+        merge: [ *optionsAll, *optionsInstall ]
+      name: SC-APT-GET-INSTALL
+    - cmd: $0 purge [packages...]
+      options: *optionsAll
+      name: SC-APT-GET-PURGE
+    - cmd: $0 remove [packages...]
+      options: *optionsAll
+      name: SC-APT-GET-REMOVE
+    - cmd: $0 source <package>
+      options: *optionsAll
+      name: SC-APT-GET-SOURCE
+    - cmd: $0 build-dep [packages...]
+      options: *optionsAll
+      name: SC-APT-GET-BUILD-DEP
+    - cmd: $0 clean
+      options: *optionsAll
+      name: SC-APT-GET-CLEAN
+    - cmd: $0 autoclean
+      options: *optionsAll
+      name: SC-APT-GET-AUTO-CLEAN
+    - cmd: $0 autoremove [packages...]
+      options: *optionsAll
+      name: SC-APT-GET-AUTO-REMOVE
+    - cmd: $0 check
+      options: *optionsAll
+      name: SC-APT-GET-CHECK
+    - cmd: $0 update
+      options: *optionsAll
+      name: SC-APT-GET-UPDATE
+    - cmd: $0 upgrade [packages...]
+      options: *optionsAll
+      name: SC-APT-GET-UPGRADE
+    - cmd: $0 dist-upgrade
+      options: *optionsAll
+      name: SC-APT-GET-DIST-UPGRADE
+    - cmd: $0 clean
+      options: *optionsAll
+      name: SC-APT-GET-CLEAN

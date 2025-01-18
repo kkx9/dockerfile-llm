@@ -1,0 +1,49 @@
+command:
+  providerFor:
+    - curl
+  prefix: SC-CURL
+  options: &options
+    booleans:
+      - option: --version
+        description: Show version number and quit
+      - option: -f, --fail
+        description: Fail silently (no output at all) on HTTP errors
+      - option: -s, --silent
+        description: Silent mode (don't output anything)
+      - option: -l, --list-only
+        description: List only mode
+      - option: -N, --no-buffer
+        description: Disable buffering of the output stream
+      - option: -v, --verbose
+        description: Make the operation more talkative
+      - option: -S, --show-error
+        description: Show error even when -s is used
+      - option: -L, --location
+        description: Follow redirects
+      - option: --compressed
+        description: Request compressed response
+      - option: -j, --junk-session-cookies
+        description: Ignore session cookies read from file
+      - option: -k, --insecure
+        description: Allow connections to SSL sites without certs
+      - option: --progress
+        description: Show progress meter
+      - option: --progress-bar
+        description: Display progress as a simple progress bar
+      - option: --create-dirs
+        description: Create necessary local directory hierarchy
+    strings:
+      - option: --retry
+        description: Retry request if transient problems occur
+      - option: --url
+        description: Specify a URL to fetch
+    paths:
+      - option: -o, --output
+        description: Write output to <file> instead of stdout
+    arrays:
+      - option: -O, --remote-name
+        description: Write output to a file named as the remote file
+  scenarios:
+    - cmd: $0 [url]
+      options: *options
+      name: SC-CURL

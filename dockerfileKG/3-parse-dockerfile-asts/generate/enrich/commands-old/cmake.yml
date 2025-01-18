@@ -1,0 +1,92 @@
+command:
+  providerFor:
+    - cmake
+  prefix: SC-CMAKE
+  options: &options
+    booleans:
+      - option: --help
+        description: Display help information
+      - option: --version
+        description: Show version information
+      - option: -v, --verbose
+        description: Enable verbose mode
+      - option: --strip
+        description: Strip unnecessary information
+      - option: -N
+        description: Do not re-run CMake
+      - option: --clean-first
+        description: Clean before building
+      - option: --user-stderr
+        description: Use stderr for user messages
+    strings:
+      - option: --from
+        description: Specify the source
+      - option: -E
+        description: CMake command mode
+      - option: -G
+        description: Specify a build system generator
+      - option: -U
+        description: Remove matching entries
+      - option: -T
+        description: Specify a toolset
+      - option: -A
+        description: Specify an architecture
+      - option: --component
+        description: Specify a component
+      - option: -j, --parallel
+        description: Build in parallel
+    paths:
+      - option: --build
+        description: Build a project
+      - option: --install
+        description: Install a project
+      - option: --open
+        description: Open a project
+      - option: --config
+        description: Specify a configuration
+      - option: --prefix
+        description: Specify an installation prefix
+      - option: -S
+        description: Specify a source directory
+      - option: -B
+        description: Specify a build directory
+      - option: -C
+        description: Specify a preset
+    arrays:
+      - option: -D
+        description: Define a CMake variable
+      - option: -W
+        description: Enable warnings
+      - option: -t, --target
+        description: Specify a target
+  scenarios:
+    - cmd: $0 [options...]
+      mustHave:
+        - --build
+      options: *options
+      fixupNonSpacedArgs: true
+      name: SC-CMAKE
+    - cmd: $0
+      mustHave:
+        - -S
+        - -B
+      options: *options
+      fixupNonSpacedArgs: true
+      name: SC-CMAKE
+    - cmd: $0
+      mustHave:
+        - --install
+      options: *options
+      fixupNonSpacedArgs: true
+      name: SC-CMAKE
+    - cmd: $0
+      mustHave:
+        - --open
+      options: *options
+      fixupNonSpacedArgs: true
+      name: SC-CMAKE
+    - cmd: $0 [pathToSourceOrBuild]
+      options: *options
+      fixupNonSpacedArgs: true
+      saveLastNonOption: pathToSourceOrBuild
+      name: SC-CMAKE

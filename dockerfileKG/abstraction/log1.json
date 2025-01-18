@@ -1,0 +1,194 @@
+{
+    "children": [
+        {
+            "children": [
+                {
+                    "children": [],
+                    "type": "DOCKER-IMAGE-NAME",
+                    "value": "%%FROM%%"
+                }
+            ],
+            "type": "DOCKER-FROM"
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "children": [],
+                            "type": "UNKNOWN"
+                        }
+                    ],
+                    "type": "BASH-SCRIPT"
+                }
+            ],
+            "type": "DOCKER-RUN"
+        },
+        {
+            "children": [
+                {
+                    "children": [
+                        {
+                            "children": [
+                                {
+                                    "children": [],
+                                    "type": "SC-SET-F-E"
+                                },
+                                {
+                                    "children": [],
+                                    "type": "SC-SET-F-U"
+                                },
+                                {
+                                    "children": [],
+                                    "type": "SC-SET-F-X"
+                                }
+                            ],
+                            "type": "SC-SET"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "children": [],
+                                            "type": "UNKNOWN"
+                                        }
+                                    ],
+                                    "type": "BASH-REDIRECT-COMMAND"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL",
+                                                            "value": "/usr/local/bin/rabbitmqadmin"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-PATH"
+                                                }
+                                            ],
+                                            "type": "BASH-REDIRECT-OVERWRITE"
+                                        }
+                                    ],
+                                    "type": "BASH-REDIRECT-REDIRECTS"
+                                }
+                            ],
+                            "type": "BASH-REDIRECT"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "children": [],
+                                            "type": "BASH-OP",
+                                            "value": "SingleBracket"
+                                        }
+                                    ],
+                                    "type": "BASH-CONDITION-OP"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "children": [],
+                                                            "type": "BASH-OP",
+                                                            "value": "-s"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-CONDITION-UNARY-OP"
+                                                },
+                                                {
+                                                    "children": [
+                                                        {
+                                                            "children": [],
+                                                            "type": "BASH-LITERAL",
+                                                            "value": "/usr/local/bin/rabbitmqadmin"
+                                                        }
+                                                    ],
+                                                    "type": "BASH-CONDITION-UNARY-EXP"
+                                                }
+                                            ],
+                                            "type": "BASH-CONDITION-UNARY"
+                                        }
+                                    ],
+                                    "type": "BASH-CONDITION-EXP"
+                                }
+                            ],
+                            "type": "BASH-CONDITION"
+                        },
+                        {
+                            "children": [
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [],
+                                                    "type": "BASH-LITERAL",
+                                                    "value": "+"
+                                                },
+                                                {
+                                                    "children": [],
+                                                    "type": "BASH-LITERAL",
+                                                    "value": "x"
+                                                }
+                                            ],
+                                            "type": "BASH-CONCAT"
+                                        }
+                                    ],
+                                    "type": "SC-CHMOD-MODE"
+                                },
+                                {
+                                    "children": [
+                                        {
+                                            "children": [
+                                                {
+                                                    "children": [],
+                                                    "type": "BASH-LITERAL",
+                                                    "value": "/usr/local/bin/rabbitmqadmin"
+                                                }
+                                            ],
+                                            "type": "SC-CHMOD-PATH"
+                                        }
+                                    ],
+                                    "type": "SC-CHMOD-PATHS"
+                                }
+                            ],
+                            "type": "SC-CHMOD"
+                        },
+                        {
+                            "children": [],
+                            "type": "UNKNOWN"
+                        },
+                        {
+                            "children": [],
+                            "type": "UNKNOWN"
+                        }
+                    ],
+                    "type": "BASH-SCRIPT"
+                }
+            ],
+            "type": "DOCKER-RUN"
+        },
+        {
+            "children": [
+                {
+                    "children": [],
+                    "type": "DOCKER-PORT",
+                    "value": "15671"
+                }
+            ],
+            "type": "DOCKER-EXPOSE"
+        }
+    ],
+    "file_sha": "017789060b7322901b9e742ff3e86b9f0ba5aea2",
+    "type": "DOCKER-FILE"
+}

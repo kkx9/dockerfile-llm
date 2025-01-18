@@ -1,0 +1,135 @@
+command:
+  providerFor:
+    - pip
+    - pip2
+    - pip3
+  prefix: SC-PIP
+  optionsAll: &optionsAll
+    booleans:
+      - option: -h, --help
+        description: Show help message and exit
+      - option: --isolated
+        description: Run pip in an isolated mode
+      - option: -v, --verbose
+        description: Give more output
+      - option: -V, --version
+        description: Show version and exit
+      - option: -q, --quiet
+        description: Give less output
+      - option: --no-cache-dir
+        description: Disable the cache
+      - option: --disable-pip-version-check
+        description: Don't periodically check PyPI to determine whether a new version of pip is available for download
+    strings:
+      - option: --proxy
+        description: Specify a proxy in the form [user:passwd@]proxy.server:port
+      - option: --retries
+        description: Maximum number of retries each connection should attempt
+      - option: --timeout
+        description: Set the socket timeout
+      - option: --exists-action
+        description: Default action when a path already exists
+      - option: --trusted-host
+        description: Mark this host as trusted
+    paths:
+      - option: --log
+        description: Path to a verbose appending log
+      - option: --cert
+        description: Path to alternate CA bundle
+      - option: --client-cert
+        description: Path to SSL client certificate
+      - option: --cache-dir
+        description: Store the cache data in this directory
+  optionsInstall: &optionsInstall
+      booleans:
+        - option: -U, --upgrade
+          description: Upgrade all specified packages to the newest available version
+        - option: --force-reinstall
+          description: Reinstall all packages even if they are already up-to-date
+        - option: -I, --ignore-installed
+          description: Ignore the installed packages
+        - option: --ignore-requires-python
+          description: Ignore the Requires-Python information
+        - option: --no-deps
+          description: Don't install package dependencies
+        - option: --user
+          description: Install to the Python user install directory
+        - option: --system
+          description: Install using the system Python environment
+        - option: --egg
+          description: Install packages as eggs
+        - option: --compile
+          description: Compile Python source files to bytecode
+        - option: --no-compile
+          description: Do not compile Python source files to bytecode
+        - option: --no-use-wheel
+          description: Do not use wheels
+        - option: --pre
+          description: Include pre-release and development versions
+        - option: --no-clean
+          description: Do not clean up build directories
+        - option: --require-hashes
+          description: Require a hash to check each requirement against
+        - option: --no-index
+          description: Ignore package index
+        - option: --process-dependency-links
+          description: Enable the processing of dependency links
+      strings:
+        - option: -i, --index-url
+          description: Base URL of Python Package Index
+        - option: -e, --editable
+          description: Install a project in editable mode
+        - option: --upgrade-strategy
+          description: Determine how dependency upgrading should be handled
+        - option: --no-binary
+          description: Do not use binary packages
+        - option: --only-binary
+          description: Only use binary packages
+        - option: -f, --find-links
+          description: URL to look for packages at
+      paths:
+        - option: -c, --constraint
+          description: Constrain versions using the given constraints file
+        - option: -r, --requirements
+          description: Install from the given requirements file
+        - option: -b, --build
+          description: Directory to unpack packages into and build in
+        - option: -t, --target
+          description: Install packages into this directory
+        - option: -d, --download
+          description: Download packages into this directory
+        - option: --src
+          description: Directory to check out editable projects into
+        - option: --root
+          description: Install everything relative to this alternate root directory
+        - option: --prefix
+          description: Installation prefix
+      arrays:
+        - option: --extra-index-url
+          description: Extra URLs of package indexes to use in addition to --index-url
+        - option: --install-option
+          description: Extra arguments to be supplied to the setup.py install command
+        - option: --global-option
+          description: Extra global options to be supplied to the setup.py call before the install command
+  optionsUninstall: &optionsUnistall
+    booleans:
+      - option: -y, --yes
+        description: Automatically answer yes for all questions
+    paths:
+      - option: -r, --requirements
+        description: Uninstall all the packages listed in the given requirements file
+  scenarios:
+    - cmd: $0 install [targets...]
+      options:
+        merge: [ *optionsAll, *optionsInstall ]
+      name: SC-PIP-INSTALL
+    - cmd: $0 uninstall [targets...]
+      options:
+        merge: [ *optionsAll, *optionsUnistall ]
+      name: SC-PIP-UNINSTALL
+    - cmd: $0 freeze
+      options: *optionsAll
+      name: SC-PIP-FREEZE
+    - cmd: $0
+      options: *optionsAll
+      name: SC-PIP

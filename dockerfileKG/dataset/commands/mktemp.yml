@@ -1,0 +1,28 @@
+command:
+  providerFor:
+    - mktemp
+  prefix: SC-MKTEMP
+  options: &options
+    booleans:
+      - option: -d, --directory
+        description: Create a directory instead of a file
+      - option: -u, --dry-run
+        description: Do not create anything; merely print a name (unsafe)
+      - option: -q, --quiet
+        description: Suppress diagnostics about file/dir-creation failure
+      - option: -t
+        description: Generate a temporary file name (deprecated)
+      - option: --help
+        description: Display this help and exit
+      - option: --version
+        description: Output version information and exit
+    strings:
+      - option: --suffix
+        description: Append the specified suffix to the template
+    paths:
+      - option: -p, --tmpdir
+        description: Interpret TEMPLATE relative to DIR; if DIR is not specified, use $TMPDIR if set, else /tmp
+  scenarios:
+    - cmd: $0 [template]
+      options: *options
+      name: SC-MKTEMP

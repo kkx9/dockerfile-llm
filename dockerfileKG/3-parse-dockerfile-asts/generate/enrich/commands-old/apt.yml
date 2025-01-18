@@ -1,0 +1,56 @@
+command:
+  debug: true
+  prefix: SC-APT
+  providerFor:
+    - apt
+  optionsAll: &optionsAll
+    booleans:
+      - option: -y, --yes
+        description: Assume yes to all queries
+      - option: -h, --help
+        description: Show help message
+      - option: -v, --version
+        description: Show version information
+      - option: --purge
+        description: Remove package and configuration files
+      - option: --auto-remove
+        description: Remove automatically all unused packages
+      - option: --autoremove
+        description: Alias for --auto-remove
+      - option: --force-yes
+        description: Force yes to all prompts
+      - option: --no-install-recommends
+        description: Do not install recommended packages
+    paths:
+      - option: -o, --option
+        description: Set an arbitrary configuration option
+      - option: -C, --config
+        description: Specify a configuration file
+    counts:
+      - option: -q, --quiet
+        description: Quiet mode, produces output suitable for logging
+  scenarios:
+    - cmd: $0 install [packages...]
+      options: *optionsAll
+      name: SC-APT-INSTALL
+    - cmd: $0 remove [packages...]
+      options: *optionsAll
+      name: SC-APT-REMOVE
+    - cmd: $0 clean
+      options: *optionsAll
+      name: SC-APT-CLEAN
+    - cmd: $0 autoclean
+      options: *optionsAll
+      name: SC-APT-AUTO-CLEAN
+    - cmd: $0 autoremove [packages...]
+      options: *optionsAll
+      name: SC-APT-AUTO-REMOVE
+    - cmd: $0 update
+      options: *optionsAll
+      name: SC-APT-UPDATE
+    - cmd: $0 upgrade [packages...]
+      options: *optionsAll
+      name: SC-APT-UPGRADE
+    - cmd: $0 clean
+      options: *optionsAll
+      name: SC-APT-CLEAN

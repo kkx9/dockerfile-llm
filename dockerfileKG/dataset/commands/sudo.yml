@@ -1,0 +1,58 @@
+command:
+  providerFor:
+    - sudo
+  prefix: SC-SUDO
+  options: &options
+    booleans:
+      - option: -A, --askpass
+        description: Use a helper program for password prompting
+      - option: -b, --background
+        description: Run the given command in the background
+      - option: -E, --preserve-env
+        description: Preserve user environment when running command
+      - option: -e, --edit
+        description: Edit files instead of running a command
+      - option: -H, --set-home
+        description: Set HOME variable to target user's home dir
+      - option: -h, --help
+        description: Display help message and exit
+      - option: -i, --login
+        description: Run login shell as the target user
+      - option: -K, --remove-timestamp
+        description: Remove timestamp file completely
+      - option: -k, --reset-timestamp
+        description: Invalidate timestamp file
+      - option: -l, --list
+        description: List user's privileges or check a specific command
+      - option: -n, --non-interactive
+        description: Non-interactive mode, no prompts are used
+      - option: -P, --preserve-groups
+        description: Preserve group vector instead of setting to target's
+      - option: -S, --stdin
+        description: Read password from standard input
+      - option: -s, --shell
+        description: Run shell as the target user
+      - option: -V, --version
+        description: Display version information and exit
+      - option: -v, --validate
+        description: Update user's timestamp without running a command
+    strings:
+      - option: -C, --close-from
+        description: Close all file descriptors >= num
+      - option: -g, --group
+        description: Run command as the specified group
+      - option: -h, --host
+        description: Run command on the specified host
+      - option: -p, --prompt
+        description: Use the specified password prompt
+      - option: -r, --role
+        description: Create SELinux security context with specified role
+      - option: -U, --other-user
+        description: Run command as the specified user
+      - option: -u, --user
+        description: Run command as the specified user
+  scenarios:
+    - cmd: $0
+      options: *options
+      name: SC-SUDO
+      captureAfterFirstNonOption: args

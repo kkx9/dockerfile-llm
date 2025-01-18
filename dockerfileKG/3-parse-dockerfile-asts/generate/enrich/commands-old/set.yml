@@ -1,0 +1,51 @@
+command:
+  providerFor:
+    - set
+  prefix: SC-SET
+  options: &options
+    booleans:
+      - option: -a
+        description: Enable debugging
+      - option: -b
+        description: Notify of job termination
+      - option: -e
+        description: Exit immediately if a command exits with a non-zero status
+      - option: -f
+        description: Disable file name generation
+      - option: -h
+        description: Remember the location of commands as they are looked up
+      - option: -k
+        description: All arguments in the form of assignment statements are placed in the environment for a command
+      - option: -m
+        description: Monitor mode
+      - option: -n
+        description: Read commands but do not execute them
+      - option: -p
+        description: Turn on privileged mode
+      - option: -t
+        description: Exit after reading and executing one command
+      - option: -u
+        description: Treat unset variables as an error when substituting
+      - option: -v
+        description: Print shell input lines as they are read
+      - option: -x
+        description: Print commands and their arguments as they are executed
+      - option: -B
+        description: Disable brace expansion
+      - option: -C
+        description: Prevent output redirection from overwriting existing files
+      - option: -E
+        description: Inherit the ERR trap in subshells
+      - option: -H
+        description: Enable ! style history substitution
+      - option: -P
+        description: Do not follow symbolic links
+      - option: -T
+        description: Enable debugging traps
+    arrays:
+      - option: -o
+        description: Set option
+  scenarios:
+    - cmd: $0 [args]
+      options: *options
+      name: SC-SET

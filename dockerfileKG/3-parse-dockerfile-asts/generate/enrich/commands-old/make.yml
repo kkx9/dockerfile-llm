@@ -1,0 +1,90 @@
+command:
+  providerFor:
+    - make
+  prefix: SC-MAKE
+  options: &options
+    booleans:
+      - option: -b
+        description: Unconditionally make all targets
+      - option: -m
+        description: Ignored for compatibility
+      - option: -B, --always-make
+        description: Unconditionally make all targets
+      - option: -d
+        description: Print lots of debugging information
+      - option: -e, --environment-overrides
+        description: Environment variables override makefiles
+      - option: -h, --help
+        description: Print this message and exit
+      - option: -i, --ignore-errors
+        description: Ignore errors from commands
+      - option: -k, --keep-going
+        description: Keep going when some targets can't be made
+      - option: -L, --check-symlink-times
+        description: Use the latest mtime between symlinks and target
+      - option: -n, --just-print
+        description: Don't actually run any commands
+      - option: -n, --dry-run
+        description: Don't actually run any commands
+      - option: -n, --recon
+        description: Don't actually run any commands
+      - option: -p, --print-data-base
+        description: Print make's internal database
+      - option: -q, --question
+        description: Run no commands; exit status says if up to date
+      - option: -r, --no-builtin-rules
+        description: Disable the built-in implicit rules
+      - option: -R, --no-builtin-variables
+        description: Disable the built-in variable settings
+      - option: -s, --silent
+        description: Don't echo commands
+      - option: -s, --quiet
+        description: Don't echo commands
+      - option: -S, --no-keep-going
+        description: Turns off -k
+      - option: -S, --stop
+        description: Turns off -k
+      - option: -t, --touch
+        description: Touch targets instead of remaking them
+      - option: --trace
+        description: Print tracing information
+      - option: -v, --version
+        description: Print the version number of make and exit
+      - option: -w, --print-directory
+        description: Print the current directory
+      - option: --no-print-directory
+        description: Turn off -w, even if it was turned on implicitly
+      - option: --warn-undefined-variables
+        description: Warn when an undefined variable is referenced
+      - option: -O, --output-sync
+        description: Synchronize output of parallel jobs
+    strings:
+      - option: --debug
+        description: Print debugging information
+      - option: --eval
+        description: Evaluate the argument as a makefile statement
+      - option: -j, --jobs
+        description: Allow N jobs at once; infinite jobs with no arg
+      - option: -l, --load-average
+        description: Don't start multiple jobs unless load is below N
+      - option: --max-load
+        description: Don't start multiple jobs unless load is below N
+    paths:
+      - option: -C, --directory
+        description: Change to directory DIR before doing anything
+      - option: -f, --file
+        description: Read FILE as a makefile
+      - option: -f, --makefile
+        description: Read FILE as a makefile
+      - option: -I, --include-dir
+        description: Search directory DIR for included makefiles
+      - option: -W, --what-if
+        description: Pretend that the target file has just been modified
+      - option: -W, --new-file
+        description: Pretend that the target file has just been modified
+      - option: -W, --assume-new
+        description: Pretend that the target file has just been modified
+  scenarios:
+    - cmd: $0 [target] [args...]
+      options: *options
+      name: SC-MAKE

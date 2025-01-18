@@ -1,0 +1,36 @@
+command:
+  providerFor:
+    - chmod
+  prefix: SC-CHMOD
+  options: &options
+    booleans:
+      - option: -R, --recursive
+        description: Change files and directories recursively
+      - option: --help
+        description: Display help information
+      - option: --version
+        description: Output version information and exit
+      - option: --no-preserve-root
+        description: Do not treat '/' specially (the default)
+      - option: -v, --verbose
+        description: Output a diagnostic for every file processed
+      - option: -f, --silent
+        description: Suppress most error messages
+      - option: -f, --quiet
+        description: Suppress most error messages
+      - option: -c, --changes
+        description: Like verbose but report only when a change is made
+      - option: --preserve-root
+        description: Do not operate recursively on '/'
+    paths:
+      - option: --reference
+        description: Use RFILE's mode instead of MODE values
+  scenarios:
+    - cmd: $0 <mode> [paths...]
+      options: *options
+      name: SC-CHMOD
+    - cmd: $0 [paths...]
+      options: *options
+      mustHave:
+        - --reference
+      name: SC-CHMOD

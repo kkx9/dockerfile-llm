@@ -1,0 +1,188 @@
+command:
+  providerFor:
+    - yarn
+  prefix: SC-YARN
+  options: &options
+    booleans:
+      - option: --verbose
+        description: Show additional logs
+      - option: --help
+        description: Display help information
+    paths:
+      - option: --cache-folder
+        description: Specify the cache folder
+    strings:
+      - option: --mutex
+        description: Use a mutex to ensure only one yarn instance is running
+  installOptions: &installOptions
+    booleans:
+      - option: --check-files
+        description: Verify that the installed files are consistent
+      - option: --flat
+        description: Only allow one version of each package
+      - option: --force
+        description: Ignore cache and force installations
+      - option: --har
+        description: Save HTTP archive of the installation
+      - option: --ignore-scripts
+        description: Do not execute lifecycle scripts
+      - option: --no-lockfile
+        description: Do not create a lockfile
+      - option: --pure-lockfile
+        description: Do not generate a lockfile and fail if an update is needed
+      - option: --focus
+        description: Focus on a single workspace
+      - option: --frozen-lockfile
+        description: Do not modify the lockfile
+      - option: --silent
+        description: Do not output any messages
+      - option: --ignore-engines
+        description: Ignore engines check
+      - option: --ignore-optional
+        description: Ignore optional dependencies
+      - option: --offline
+        description: Trigger an error if any required dependencies are not available in local cache
+      - option: --non-interactive
+        description: Do not prompt for user input
+      - option: --update-checksums
+        description: Update package checksums
+      - option: --audit
+        description: Run vulnerability audit
+      - option: --no-bin-links
+        description: Do not create symlinks for executables
+      - option: --link-duplicates
+        description: Create hardlinks to save space
+    strings:
+      - option: --prod, --production
+        description: Install only production dependencies
+    paths:
+      - option: --modules-folder
+        description: Specify the modules folder
+  addOptions: &addOptions
+    booleans:
+      - option: -D, --dev
+        description: Install as a development dependency
+      - option: -P, --peer
+        description: Install as a peer dependency
+      - option: -O, --optional
+        description: Install as an optional dependency
+      - option: -E, --exact
+        description: Install exact version
+      - option: -T, --tilde
+        description: Use the tilde range operator
+      - option: -N, --ignore-workspace-root-check
+        description: Ignore workspace root check
+      - option: --audit
+        description: Run vulnerability audit
+  cacheListOptions: &cacheListOptions
+    strings:
+      - option: --pattern
+        description: Filter cached packages by pattern
+  auditOptions: &auditOptions
+    booleans:
+      - option: --verbose
+        description: Show additional logs
+      - option: --json
+        description: Output audit results in JSON format
+  autocleanOptions: &autocleanOptions
+    booleans:
+      - option: -I, --init
+        description: Initialize the autoclean configuration
+      - option: -F, --force
+        description: Force the autoclean operation
+  scenarios:
+    - cmd: $0 add [modules...]
+      options:
+        merge: [ *options, *addOptions ]
+      name: SC-YARN-ADD
+    - cmd: $0 audit
+      options:
+        merge: [ *options, *auditOptions ]
+      name: SC-YARN-AUDIT
+    - cmd: $0 autoclean
+      options:
+        merge: [ *options, *autocleanOptions ]
+      name: SC-YARN-AUTO-CLEAN
+    - cmd: $0 bin <executable>
+      options: *options
+      name: SC-YARN-BIN
+    - cmd: $0 lint
+      options: *options
+      name: SC-YARN-LINT
+    - cmd: $0 cache list
+      options:
+        merge: [ *options, *cacheListOptions ]
+      name: SC-YARN-CACHE-LIST
+    - cmd: $0 cache clean [modules...]
+      options: *options
+      name: SC-YARN-CACHE-CLEAN
+    - cmd: $0 cache dir
+      options: *options
+      name: SC-YARN-CACHE-DIR
+    - cmd: $0 global add [modules...]
+      options:
+        merge: [ *options, *addOptions ]
+      name: SC-YARN-GLOBAL-ADD
+    - cmd: $0 install
+      options:
+        merge: [ *options, *installOptions ]
+      name: SC-YARN-INSTALL
+    - cmd: $0 run <script>
+      options: *options
+      name: SC-YARN-RUN-SCRIPT
+      captureAfterThirdNonOption: args
+    - cmd: $0 <script>
+      options: *options
+      name: SC-YARN-RUN-SCRIPT
+      rejectIfIs:
+        name: script
+        values:
+          - add
+          - audit
+          - autoclean
+          - bin
+          - cache
+          - check
+          - config
+          - create
+          - dedupe
+          - generate-lock-entry
+          - global
+          - help
+          - import
+          - info
+          - init
+          - install
+          - licenses
+          - link
+          - list
+          - lockfile
+          - login
+          - logout
+          - outdated
+          - owner
+          - pack
+          - policies
+          - prune
+          - publish
+          - remove
+          - run
+          - self-update
+          - tag
+          - team
+          - test
+          - unlink
+          - upgrade
+          - upgrade-interactive
+          - version
+          - versions
+          - why
+          - workspace
+          - workspaces
+      captureAfterSecondNonOption: args
+    - cmd: $0
+      options:
+        merge: [ *options, *installOptions ]
+      rejectIf: [ 'install' ]
+      name: SC-YARN-INSTALL
+      

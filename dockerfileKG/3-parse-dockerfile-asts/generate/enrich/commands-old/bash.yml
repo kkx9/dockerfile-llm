@@ -1,0 +1,52 @@
+command:
+  prefix: SC-BASH
+  providerFor:
+    - bash
+  options: &options
+    booleans:
+      - option: -i
+        description: Interactive shell
+      - option: -L, --login
+        description: Make the shell a login shell
+      - option: -r
+        description: Restricted shell
+      - option: -s
+        description: Read commands from standard input
+      - option: -D
+        description: List all double-quoted strings preceded by $
+      - option: --noediting
+        description: Do not use the GNU Readline library
+      - option: --noprofile
+        description: Do not read the system-wide startup file
+      - option: --norc
+        description: Do not read and execute the personal initialization file
+      - option: --posix
+        description: Change the behavior to match the POSIX standard
+      - option: --restricted
+        description: Start a restricted shell
+      - option: -v, --verbose
+        description: Print shell input lines as they are read
+      - option: --version
+        description: Show version information and exit
+      - option: --rpm-requires
+        description: Produce the list of files required by the script
+      - option: --debugger
+        description: Start with the debugger
+      - option: --dump-po-strings
+        description: Dump strings for translation
+      - option: --dump-strings
+        description: Dump strings for translation
+      - option: --help
+        description: Display help information
+    strings:
+      - option: -c
+        description: Read commands from the specified string
+    paths:
+      - option: --init-file
+        description: Execute commands from the specified file
+      - option: --rcfile
+        description: Execute commands from the specified file
+  scenarios:
+    - cmd: $0 [script] [args...]
+      options: *options
+      name: SC-BASH

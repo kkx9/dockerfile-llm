@@ -1,0 +1,66 @@
+command:
+  providerFor:
+    - ln
+  prefix: SC-LN
+  options: &options
+    booleans:
+      - option: -b
+        description: Make a backup of each existing destination file
+      - option: -d, --directory
+        description: Allow the superuser to attempt to hard link directories
+      - option: -F, --directory
+        description: Same as --directory, but create a directory if it does not exist
+      - option: -f, --force
+        description: Remove existing destination files
+      - option: -i, --interactive
+        description: Prompt whether to remove existing destination files
+      - option: -L, --logical
+        description: Dereference TARGETs that are symbolic links
+      - option: -n, --no-dereference
+        description: Treat LINK_NAME as a normal file if it is a symbolic link to a directory
+      - option: -P, --physical
+        description: Make hard links directly to symbolic links
+      - option: -r, --relative
+        description: Create symbolic links relative to the link location
+      - option: -s, --symbolic
+        description: Make symbolic links instead of hard links
+      - option: -T, --no-target-directory
+        description: Treat LINK_NAME as a normal file always
+      - option: -v, --verbose
+        description: Print name of each linked file
+      - option: --help
+        description: Display this help and exit
+      - option: --version
+        description: Output version information and exit
+    strings:
+      - option: --backup
+        description: Make a backup of each existing destination file
+      - option: -S, --suffix
+        description: Override the usual backup suffix
+    paths:
+      - option: -t, --target-directory
+        description: Specify the DIRECTORY in which to create the links
+  scenarios:
+    - cmd: $0 <target> <link>
+      options: *options
+      name: SC-LN
+    - cmd: $0 <target>
+      options: *options
+      name: SC-LN
+    - cmd: $0 [targets...]
+      options: *options
+      mustHave:
+        - -t
+      name: SC-LN
+    - cmd: $0 [targets...]
+      options: *options
+      mustHave:
+        - --target-directory
+      name: SC-LN
+    - cmd: $0 [targets...]
+      options: *options
+      name: SC-LN
+      postProcess:
+        - tagLastElement:
+            source: targets
+            tag: SC-LN-DIRECTORY

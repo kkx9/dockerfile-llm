@@ -1,0 +1,49 @@
+command:
+  providerFor:
+    - chown
+  prefix: SC-CHOWN
+  options: &options
+    booleans:
+      - option: -c, --changes
+        description: Report when a change is made
+      - option: -f, --silent
+        description: Suppress most error messages
+      - option: -f, --quiet
+        description: Suppress most error messages
+      - option: -v, --verbose
+        description: Output a diagnostic for every file processed
+      - option: --dereference
+        description: Affect the referent of each symbolic link
+      - option: -h, --no-dereference
+        description: Affect symbolic links instead of any referenced file
+      - option: --no-preserve-root
+        description: Do not treat '/' specially (the default)
+      - option: --preserve-root
+        description: Fail to operate recursively on '/'
+      - option: -R, --recursive
+        description: Operate on files and directories recursively
+      - option: -H
+        description: If a command line argument is a symbolic link to a directory, traverse it
+      - option: -L
+        description: Traverse every symbolic link to a directory encountered
+      - option: -P
+        description: Do not traverse any symbolic links (default)
+      - option: --help
+        description: Display this help and exit
+      - option: --version
+        description: Output version information and exit
+    strings:
+      - option: --from
+        description: Change the owner and/or group of each file only if its current owner and/or group match those specified here
+    paths:
+      - option: --reference
+        description: Use this reference file's owner and group rather than specifying OWNER:GROUP values
+  scenarios:
+    - cmd: $0 [paths...]
+      mustHave:
+        - --reference
+      options: *options
+      name: SC-CHOWN
+    - cmd: $0 <owner> [paths...]
+      options: *options
+      name: SC-CHOWN

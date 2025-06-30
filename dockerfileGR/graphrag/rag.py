@@ -1,87 +1,119 @@
-# coding=utf-8
-import json
-from typing import Dict, List
-import requests
+from typing import List, Dict, Optional
+from pydantic import BaseModel
+from ..knowldeg_graph import models, knowledge_graph_service
+# from models import Entity, KnowledgeGraph
+# from knowledge_graph_service import KnowledgeGraphService
+import openai
+
+Entity, KnowledgeGraph,  EntityType, RelationType = models.Entity, models.KnowledgeGraph, models.EntityType, models.RelationType
+KnowledgeGraphService = knowledge_graph_service.KnowledgeGraphService
 
 
-DEFAULT_MODEL = "Meta-Llama-3-8B-Instruct"
+class RAGPrompt(BaseModel):
+    user_requirement: str
+    knowledge_context: str
+    bash_context: Optional[str] = None
 
 
-def assistant(content: str):
-    return { "role": "assistant", "content": content }
+class RetrievalAugmentedGenerationService:
+    def __init__(self, kg_service: KnowledgeGraphService, openai_api_key: str):
+        self.kg_service = kg_service
+        openai.api_key = openai_api_key
+        self.bash_context_db = self._load_bash_context()
 
-def user(content: str):
-    return { "role": "user", "content": content }
+    def _load_bash_context(self) -> Dict[str, str]:
+        """Load bash command context examples"""
+        # In practice, this would load from a database or file
+        return {
+            "curl download": "When downloading files with curl, it's recommended to use -L to follow redirects and -sS for silent mode with error reporting.",
+            "package installation": "For Debian-based systems, use 'apt-get update && apt-get install -y --no-install-recommends' to install packages efficiently.",
+            "file extraction": "Use 'tar -xzf' for .tar.gz files and 'unzip' for .zip files. Clean up the archive after extraction."
+        }
 
-def chat_completion(
-    messages: List[Dict],
-    model = DEFAULT_MODEL,
-    temperature: float = 0.6,
-    top_p: float = 0.9,
-    max_tokens: int = 2048,
-    stream: bool = False,
-) -> str:
-    header = {'Content-Type': 'application/json'}
-    data = {
-          "messages": messages,
-          "temperature": temperature, 
-          "top_p" : top_p, 
-          "max_tokens": max_tokens, 
-          "model": model,
-          "stream" : stream,
-        #   "n" : 1,
-        #   "best_of": 1, 
-        #   "presence_penalty": 1.2, 
-        #   "frequency_penalty": 0.2,           
-        #   "top_k": 50, 
-        #   "use_beam_search": False, 
-        #   "stop": [], 
-        #   "ignore_eos" :False,
-        #   "logprobs": None
-    }
-    response = requests.post(
-        url='http://127.0.0.1:21003/v1/chat/completions',
-        headers=header,
-        data=json.dumps(data).encode('utf-8')
-    )
-    result = json.loads(response.content)
-    return result["choices"][0]["message"]["content"]
+    def _get_bash_context(self, dockerfile: str) -> str:
+        """Get relevant bash context for the Dockerfile"""
+        # Simple keyword matching - could be enhanced with embeddings
+        context = []
+        lines = dockerfile.split("\n")
 
+        for line in lines:
+            if "curl" in line and "curl download" not in context:
+                context.append(self.bash_context_db["curl download"])
+            if "apt-get install" in line and "package installation" not in context:
+                context.append(self.bash_context_db["package installation"])
+            if "tar -xzf" in line or "unzip" in line and "file extraction" not in context:
+                context.append(self.bash_context_db["file extraction"])
 
-def complete_and_print(prompt: str, model: str = DEFAULT_MODEL):
-    print("="*50 + f"\n{prompt}\n" + "="*50)
-    response = chat_completion(messages=[user(prompt)], model=model)
-    print(response, end="\n\n")
+        return "\n".join(context)
 
-# few-shot test
-def sentiment(text):
-    response = chat_completion(messages=[
-        user("You are a sentiment classifier. For each message, give the percentage of positive/netural/negative."),
-        user("I liked it"),
-        assistant("70% positive 30% neutral 0% negative"),
-        user("It could be better"),
-        assistant("0% positive 50% neutral 50% negative"),
-        user("It's fine"),
-        assistant("25% positive 50% neutral 25% negative"),
-        user(text),
-    ])
-    return response
+    def _knowledge_graph_to_text(self, subgraph: KnowledgeGraph) -> str:
+        """Convert knowledge subgraph to text description"""
+        knowledge_text = []
 
+        # Group by entity type
+        images = []
+        packages = []
+        commands = []
 
-def print_sentiment(text):
-    print(f'INPUT: {text}')
-    print(sentiment(text))
+        for entity in subgraph.entities.values():
+            if entity.type == EntityType.IMAGE:
+                images.append(entity.name)
+            elif entity.type == EntityType.PACKAGE:
+                packages.append(entity.name)
+            elif entity.type == EntityType.COMMAND:
+                commands.append(entity.name)
 
+        if images:
+            knowledge_text.append(f"Base Images: {', '.join(images)}")
+        if packages:
+            knowledge_text.append(f"Required Packages: {', '.join(packages)}")
+        if commands:
+            knowledge_text.append(f"Common Commands: {', '.join(commands)}")
 
-if __name__ == "__main__":
-    # answer = chat_completion(messages=[user("What is the weather in San Francisco?")])
-    # print(answer)
+        # Add important relations
+        relation_descriptions = {
+            RelationType.DEPENDS_ON: "depends on",
+            RelationType.REQUIRES: "requires",
+            RelationType.CONFLICTS_WITH: "conflicts with"
+        }
 
-    # print_sentiment("I thought it was okay")
-    # # More likely to return a balanced mix of positive, neutral, and negative
-    # print_sentiment("I loved it!")
-    # # More likely to return 100% positive
-    # print_sentiment("Terrible service 0/10")
-    # # More likely to return 100% negative
+        for rel in subgraph.relations:
+            if rel.type in relation_descriptions:
+                source = subgraph.entities[rel.source_id].name
+                target = subgraph.entities[rel.target_id].name
+                knowledge_text.append(f"{source} {relation_descriptions[rel.type]} {target}")
 
-    complete_and_print("What time is my dinner reservation on Saturday and what should I wear?")
+        return "\n".join(knowledge_text)
+
+    def generate_dockerfile(self, prompt: RAGPrompt) -> str:
+        """Generate Dockerfile using RAG approach"""
+        system_prompt = f"""
+        You are an expert Dockerfile generator. Given the user requirements and the 
+        following knowledge context, generate a high-quality Dockerfile that follows 
+        best practices.
+
+        Knowledge Context:
+        {prompt.knowledge_context}
+
+        Bash Command Best Practices:
+        {prompt.bash_context or "None provided"}
+
+        The Dockerfile should:
+        1. Use appropriate base image
+        2. Install all required dependencies
+        3. Follow security best practices
+        4. Optimize for build caching and image size
+        5. Include necessary configuration
+        """
+
+        response = openai.ChatCompletion.create(
+            model="gpt-4o",
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": prompt.user_requirement}
+            ],
+            temperature=0.3,  # Lower temperature for more deterministic output
+            max_tokens=2000
+        )
+
+        return response.choices[0].message.content

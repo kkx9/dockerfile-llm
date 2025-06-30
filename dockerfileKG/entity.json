@@ -1,0 +1,33 @@
+{
+    "Image": {
+        "name": "ubuntu",
+        "tag": "22.04",
+        "size": "29535688",
+        "registry": "docker.io",
+        "description": "操作系统ubuntu:22.04",
+        "embedding": ["经过ImageCMDBERT模型处理后的向量"]
+    },
+    "Package": {
+        "name": "nginx",
+        "version": "1.21.3",
+        "description": "nginx:1.21.3",
+        "embedding": ["经过ImageCMDBERT模型处理后的向量"]
+    },
+    "Command": {
+        "name": "ls",
+        "description": "列出文件",
+        "embedding": ["经过ImageCMDBERT模型处理后的向量"]
+    },
+    "Option": {
+        "name": "ls -l",
+        "description": "列出文件详细信息",
+        "embedding": ["经过ImageCMDBERT模型处理后的向量"]
+    },
+    "File": {
+        "name": "/etc/hosts",
+        "description": "主机文件",
+        "embedding": ["经过ImageCMDBERT模型处理后的向量"]
+    }
+}
+
+
